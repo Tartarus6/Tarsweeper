@@ -1213,9 +1213,9 @@ function play()
 				break;
 			case 'N':
 			{
+				full_redraw = false;
 				console.home();
 				console.down(top + 1);
-				full_redraw = false;
 				if(game.start && !gameover) {
 					console.cleartoeol();
 					draw_border();
@@ -1228,6 +1228,7 @@ function play()
 					if(key != 'Y')
 						break;
 				}
+				full_redraw = true;
 				var new_difficulty = get_difficulty();
 				if(new_difficulty > 0)
 					difficulty = init_game(new_difficulty);
