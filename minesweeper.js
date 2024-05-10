@@ -541,17 +541,13 @@ function draw_cell(x, y)
 	var val = cell_val(x, y);
 	var right = " ";
 	var color = "\x01n";
-	if(game.start && !gameover
-		&& !board[selected.y][selected.x].covered
-		&& board[selected.y][selected.x].count
-		&& highlighted(x, y)) {
-		console.attributes |= WHITE;
-	}
 	if (val == char_flag || val == char_badflag) {
 		color = "\x011\x01y";
 	} else if(val == char_covered) {
 		if((x+y)%2) {
-			color = "\x014";
+			color = "\x014\x01h\x01b";
+			val = "\xdb";
+			right = "\xdb";
 		} else {
 			color = "\x014\x01h\x01b";
 			val = "\xb2";
@@ -586,6 +582,12 @@ function draw_cell(x, y)
 		} else { // for zeros (blank cells)
 			color += "\x01w"
 		}
+	}
+	if(game.start && !gameover
+		&& !board[selected.y][selected.x].covered
+		&& board[selected.y][selected.x].count
+		&& highlighted(x, y)) {
+		color += "\x01h\x01w";
 	}
 	if(selected.x == x && selected.y == y && !gameover) {
 		right = " ";
@@ -1213,7 +1215,7 @@ function play()
 			{
 				console.home();
 				console.down(top + 1);
-				full_redraw = true;
+				full_redraw = false;
 				if(game.start && !gameover) {
 					console.cleartoeol();
 					draw_border();
