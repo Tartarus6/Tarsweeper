@@ -1319,7 +1319,7 @@ function play()
 				break;
 			case 'Q':
 				if(game.start && !gameover) {
-					full_redraw = true;
+					full_redraw = false;
 					console.home();
 					console.down(top + 1);
 					console.cleartoeol();
@@ -1330,6 +1330,7 @@ function play()
 					console.clear_hotspots();
 					console.print("Quit Game (\x01~Y/\x01~N) ?");
 					var key = console.getkey(K_UPPER);
+					
 					if(key != 'Y')
 						break;
 				}
