@@ -942,6 +942,10 @@ function get_difficulty(all)
 	for(var i = 1; i <= max_size_level; i++)
 		lvls += "\x01~" + i;
 
+	// let user quit out of level selector
+	if(key == 'Q')
+		return -1;
+
 	// when asking for leaderboards
 	if(all) {
 		console.right((console.screen_columns - 20) / 2);
@@ -949,8 +953,6 @@ function get_difficulty(all)
 		var key = console.getkeys("QA", max_size_level);
 		if(key == 'A')
 			return 0;
-		if(key == 'Q')
-			return -1;
 		return key;
 	}
 	console.right((console.screen_columns - 24) / 2);
