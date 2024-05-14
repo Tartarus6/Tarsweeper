@@ -12,13 +12,13 @@ It's a game of quick deduction, pattern-recognition, and a little bit o' luck!
 
 hMain Controlsn:
 
-� hcMoven the block selector h(your cursor, the highlighted tile)n around the game board using the arrow keys,
+ù hcMoven the block selector h(your cursor, the highlighted tile)n around the game board using the arrow keys,
   home/end/page-up/down or the numeric keypad (i.e. for diagonal movement).
 
-� hcEasy startn automatically digs an empty cell to begin the game with less guesswork.
+ù hcEasy startn automatically digs an empty cell to begin the game with less guesswork.
   You can do this by pressing the hg[E]:n key before digging anything at the begining of a game.
   
-� hcDign a block (reveal its contents) using the hg[D]:n key or the hg[space-bar]n.
+ù hcDign a block (reveal its contents) using the hg[D]:n key or the hg[space-bar]n.
   If you dig-up/detonate a mine (rhi*n), sorry, game over: you lose, try again!
   
   The first block you uncover is guaranteed to be empty (safe).
@@ -29,35 +29,35 @@ It's a game of quick deduction, pattern-recognition, and a little bit o' luck!
   These digits are your clue where the next mine or empty block may be located.
   When all empty blocks are uncovered, the game is won!
 
-� hcFlagn a covered block as having a suspected mine with the hg[F]:n key.
+ù hcFlagn a covered block as having a suspected mine with the hg[F]:n key.
   You can also remove a flag (rh�n) by pressing hg[F]:n again.
   If you lose, incorrectly-flagged safe blocks are indicated with a 'rh!n'.
   
-� hcThe leaderboardn, a list of top-ranked previous game-winners, can be shown with the hg[L]:n key.
+ù hcThe leaderboardn, a list of top-ranked previous game-winners, can be shown with the hg[L]:n key.
 
-� hcStartn a new game with the the hg[N]:n key. A new difficulty level may be chosen.
+ù hcStartn a new game with the the hg[N]:n key. A new difficulty level may be chosen.
   Larger user terminals can support larger game boards for greater challenges!
 
-� hcQuitn the game with the hg[Q]:n key.
+ù hcQuitn the game with the hg[Q]:n key.
 
-� hcRedrawn the game board with the hg[Ctrl-R]:n key combination.
+ù hcRedrawn the game board with the hg[Ctrl-R]:n key combination.
 
-� hcTogglen the affected-area highlight feature with the hg[Tab]:n key.
+ù hcTogglen the affected-area highlight feature with the hg[Tab]:n key.
 
 hList of All Controls:n
-� hg[?]:n Show this help menu
-� hg[Q]:n Universal quit key (should work in every menu)
-� hg[E]:n Easy start (auto-opens an empty cell)
-� hg[D]:n Dig key
-� hg[Space]:n Alternate dig key
-� hg[F]:n Flag key
-� hg[W]:n Alternate flag key
-� hg[N]:n Begin 'new game' dialogue
-� hg[Tab]:n Toggle affected-area highlight
-� hg[L]:n Shows the leaderboard for the chosen level (sorted by speed)
-� hg[B]:n Shows personal best games for each level
-� hg[T]:n Shows overall top 20 games
-� hg[H]:n Shows full game history (use hg[Q]:n to quit the dialogue at any point)
+ù hg[?]:n Show this help menu
+ù hg[Q]:n Universal quit key (should work in every menu)
+ù hg[E]:n Easy start (auto-opens an empty cell)
+ù hg[D]:n Dig key
+ù hg[Space]:n Alternate dig key
+ù hg[F]:n Flag key
+ù hg[W]:n Alternate flag key
+ù hg[N]:n Begin 'new game' dialogue
+ù hg[Tab]:n Toggle affected-area highlight
+ù hg[L]:n Shows the leaderboard for the chosen level (sorted by speed)
+ù hg[B]:n Shows personal best games for each level
+ù hg[T]:n Shows overall top 20 games
+ù hg[H]:n Shows full game history (use hg[Q]:n to quit the dialogue at any point)
 
 hChording:n  
   Once you have flagged one or more blocks as likely containing a mine, you may
@@ -93,14 +93,14 @@ accordingly.
 If some of the navigation keys (e.g. arrow keys, home, end) do not work for
 your terminal, you can try using these alternatives:
 
-  � Up Arrow: Ctrl-^
-  � Down Arrow: Ctrl-J
-  � Left Arrow: Ctrl-]
-  � Right Arrow: Ctrl-F
-  � Home: Ctrl-B
-  � End: Ctrl-E
-  � Page-Up: Ctrl-P
-  � Page-Down: Ctrl-N
+  ù Up Arrow: Ctrl-^
+  ù Down Arrow: Ctrl-J
+  ù Left Arrow: Ctrl-]
+  ù Right Arrow: Ctrl-F
+  ù Home: Ctrl-B
+  ù End: Ctrl-E
+  ù Page-Up: Ctrl-P
+  ù Page-Down: Ctrl-N
   
 ... or use the numeric keypad.
 
