@@ -23,7 +23,8 @@ const mine_image = js.exec_dir + "mine.bin";
 const winner_image = js.exec_dir + "winner.bin";
 const boom_image = js.exec_dir + "boom?.bin";
 const loser_image = js.exec_dir + "loser.bin";
-const max_difficulty = 6;
+const max_size_level = 6;
+const max_density_level = 6;
 const min_mine_density = 0.10;
 const mine_density_multiplier = 0.025;
 const char_flag = '\x9f';
@@ -393,7 +394,7 @@ function show_winners(level)
 			last_level = difficulty;
 			count = 0;
 		} else {
-			if(!level && difficulty > 1.0 && count >= options.winners / max_difficulty)
+			if(!level && difficulty > 1.0 && count >= options.winners / max_size_level)
 				continue;
 		}
 		if(displayed&1)
@@ -926,6 +927,9 @@ function chord(x, y)
 	return false;
 }
 
+// function to ask user for difficulty
+// returns an integer
+// 'all' is for if the user is asking for leaderboards, so that they can show all levels
 function get_difficulty(all)
 {
 	console.creturn();
@@ -935,12 +939,14 @@ function get_difficulty(all)
 	console.clear_hotspots();
 	mouse_enable(false);
 	var lvls = "";
-	for(var i = 1; i <= max_difficulty; i++)
+	for(var i = 1; i <= max_size_level; i++)
 		lvls += "\x01~" + i;
+
+	// when asking for leaderboards
 	if(all) {
 		console.right((console.screen_columns - 20) / 2);
 		console.print(format("Level (%s) [\x01~All]: ", lvls));
-		var key = console.getkeys("QA", max_difficulty);
+		var key = console.getkeys("QA", max_size_level);
 		if(key == 'A')
 			return 0;
 		if(key == 'Q')
@@ -949,7 +955,7 @@ function get_difficulty(all)
 	}
 	console.right((console.screen_columns - 24) / 2);
 	console.print(format("Difficulty Level (%s): ", lvls));
-	var result = console.getnum(max_difficulty);
+	var result = console.getnum(max_size_level);
 	return result;
 }
 
@@ -1228,9 +1234,9 @@ function play()
 					if(key != 'Y')
 						break;
 				}
-				full_redraw = true;
 				var new_difficulty = get_difficulty();
 				if(new_difficulty > 0)
+					full_redraw = true;
 					difficulty = init_game(new_difficulty);
 				break;
 			}
@@ -1258,12 +1264,13 @@ function play()
 			}
 			case 'L':
 			{
-				full_redraw = true;
+				full_redraw = false;
 				mouse_enable(false);
 				console.home();
 				console.down(top + 1);
 				var level = get_difficulty(true);
 				if(level >= 0) {
+					full_redraw = true;
 					console.line_counter = 0;
 					show_winners(level);
 					console.pause();
@@ -1408,7 +1415,7 @@ try {
 		js.on_exit("console.ctrlkey_passthru = " + console.ctrlkey_passthru);
 		console.ctrlkey_passthru = "KOPTUZ";
 	}
-	if(!isNaN(numval) && numval > 0 && numval < max_difficulty)
+	if(!isNaN(numval) && numval > 0 && numval < max_size_level)
 		difficulty = numval;
 
 	if(!difficulty)
