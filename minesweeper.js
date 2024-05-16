@@ -222,7 +222,7 @@ function isgamewon()
 			new_best = true;
 			console.pause();  // 2
 			if(!best)
-				best = {};
+				var best;
 			// delete best[level.size_level][level.mine_level];
 			best[ceil_level.size_level][ceil_level.mine_level] = game;
 		}
