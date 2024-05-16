@@ -258,7 +258,7 @@ function isgamewon()
 		var winners = get_winners(ceil_level);
 
 		for(var i = 0; i < options.winners; i++) {
-			console.print(i.toString())
+			//console.print(i.toString())
 			console.pause();  // i
 			if(winners[i].name == user.alias && winners[i].end == game.end) {
 				console.print("m");
@@ -416,7 +416,7 @@ function get_winners(level)
 	if(level) {
 		list = list.filter(function (obj) { var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
 
-		console.print("-" + JSON.stringify(list) + "-");
+		// console.print("-" + JSON.stringify(list) + "-");
 		console.pause();
 
 		return (difficulty <= level && difficulty > level - 1); });
@@ -424,7 +424,7 @@ function get_winners(level)
 			
 	list.sort(compare_won_game)
 
-	console.print("+" + list.stringify() + "+");
+	// console.print("+" + list.stringify() + "+");
 	console.pause();
 			
 	return list;
