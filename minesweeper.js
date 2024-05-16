@@ -220,8 +220,12 @@ function isgamewon()
 
 		if(!best || !best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
 			new_best = true;
-			if(!best)
+			if(!best) {
 				best = {};
+				for (var i=1; i<max_size_level; i++) {
+					best[i] = {};
+				}
+			}
 			// delete best[level.size_level][level.mine_level];
 			console.pause();  // 2
 			//TODO treat these as keys not indices even if int passed.
