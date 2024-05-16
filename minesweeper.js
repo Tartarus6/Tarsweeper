@@ -215,7 +215,7 @@ function isgamewon()
 			new_best = true;
 			if(!best)
 				best = {};
-			delete best[level.size_level][level.mine_level];
+			// delete best[level.size_level][level.mine_level];
 			best[level.size_level][level.mine_level] = game;
 		}
 		game.name = user.alias;
