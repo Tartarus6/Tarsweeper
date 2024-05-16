@@ -750,6 +750,8 @@ function draw_board(full)
 			secondstr(elapsed)
 			));
 		
+		draw_border();
+		draw_border();
 		console_center(format("Lvl %1.2f-%1.2f",
 			calc_difficulty(game).size_level,
 			calc_difficulty(game).mine_level
