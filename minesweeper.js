@@ -255,7 +255,7 @@ function isgamewon()
 
 		for(var i = 0; i < options.winners; i++) {
 			console.print(i.toString())
-			console.pause();  // 5
+			console.pause();  // i
 			if(winners[i].name == user.alias && winners[i].end == game.end) {
 				win_rank = i + 1;
 				break;
@@ -413,7 +413,7 @@ function get_winners(level)
 			
 	list.sort(compare_won_game);
 
-	console.print("c")
+	console.print(" " + list + " ");
 	console.pause();
 			
 	return list;
