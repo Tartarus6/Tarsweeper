@@ -417,7 +417,7 @@ function get_winners(level)
 		list = list.filter(function (obj) { var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
 
 		// console.print("-" + JSON.stringify(list) + "-");
-		console.pause();
+		// console.pause();
 
 		return (difficulty <= level && difficulty > level - 1); });
 	}
@@ -425,7 +425,7 @@ function get_winners(level)
 	list.sort(compare_won_game)
 
 	// console.print("+" + list.stringify() + "+");
-	console.pause();
+	// console.pause();
 			
 	return list;
 }
