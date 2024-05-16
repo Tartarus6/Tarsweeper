@@ -252,10 +252,9 @@ function isgamewon()
 
 		var winners = get_winners(ceil_level);
 
-		console.print("5")
-		console.pause();  // 5
-
 		for(var i = 0; i < options.winners; i++) {
+			console.print(i.toString())
+			console.pause();  // 5
 			if(winners[i].name == user.alias && winners[i].end == game.end) {
 				win_rank = i + 1;
 				break;
