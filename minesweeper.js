@@ -518,7 +518,7 @@ function show_best()
 			console.attributes = BG_CYAN;
 		console.print(format("%s  %1.2f  %s  %3ux%2ux%-3u %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
-			,calc_difficulty(game).size_level  // TODO: fix, levels update broke it
+			,calc_difficulty(game)  // TODO: fix, levels update broke it
 			,secondstr(calc_time(game), true)
 			,game.width, game.height, game.mines
 			,game.rev ? game.rev : ''));
