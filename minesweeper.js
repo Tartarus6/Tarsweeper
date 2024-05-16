@@ -211,14 +211,13 @@ function isgamewon()
 			game.md5 = undefined;
 		}
 
-		console.pause();  // 0
+		console.pause();  // 1
+		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
 
 		var ceil_level = {};
 		ceil_level["size_level"] = Math.ceil(level.size_level);
 		ceil_level["mine_level"] = Math.ceil(level.mine_level);
 
-		console.pause();  // 1
-		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
 		if(!best || !best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
 			new_best = true;
 			console.pause();  // 2
