@@ -210,6 +210,11 @@ function isgamewon()
 			msgbase.close();
 			game.md5 = undefined;
 		}
+
+		var ceil_level = {};
+		ceil_level.size_level = Math.ceil(level.size_level);
+		ceil_level.mine_level = Math.ceil(level.mine_level);
+
 		console.pause();  // 1
 		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
 		if(!best || !best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
@@ -218,7 +223,7 @@ function isgamewon()
 			if(!best)
 				best = {};
 			// delete best[level.size_level][level.mine_level];
-			best[level.size_level][level.mine_level] = game;
+			best[ceil_level.size_level][ceil_level.mine_level] = game;
 		}
 		console.pause();  // 3
 		game.name = user.alias;
@@ -234,10 +239,6 @@ function isgamewon()
 		var start = Date.now();
 
 		console.pause();  // 4
-
-		var ceil_level = {};
-		ceil_level.size_level = Math.ceil(level.size_level);
-		ceil_level.mine_level = Math.ceil(level.mine_level);
 
 		var winners = get_winners(ceil_level);
 		for(var i = 0; i < options.winners; i++) {
