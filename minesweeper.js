@@ -211,6 +211,8 @@ function isgamewon()
 			game.md5 = undefined;
 		}
 
+		change(0, 0)
+		console.print("1")
 		console.pause();  // 1
 		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
 
@@ -224,12 +226,18 @@ function isgamewon()
 				best = {};
 			}
 			// delete best[level.size_level][level.mine_level];
+			change(0, 0)
+			console.print("2")
 			console.pause();  // 2
 			//TODO treat these as keys not indices even if int passed.
 			best[level.size_level] = {};
 			best[level.size_level][level.mine_level] = game;
 		}
+		
+		change(0, 0)
+		console.print("3")
 		console.pause();  // 3
+		
 		game.name = user.alias;
 		var result = json_lines.add(winners_list, game);
 		if(result !== true) {
@@ -242,6 +250,8 @@ function isgamewon()
 		show_image(winner_image, true, /* delay: */0);
 		var start = Date.now();
 
+		change(0, 0)
+		console.print("4")
 		console.pause();  // 4
 
 		var winners = get_winners(ceil_level);
@@ -252,6 +262,8 @@ function isgamewon()
 			}
 		}
 
+		change(0, 0)
+		console.print("5")
 		console.pause();  // 5
 
 		var now = Date.now();
