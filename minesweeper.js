@@ -211,6 +211,8 @@ function isgamewon()
 			game.md5 = undefined;
 		}
 
+		console.pause();  // 0
+
 		var ceil_level = {};
 		ceil_level.size_level = Math.ceil(level.size_level);
 		ceil_level.mine_level = Math.ceil(level.mine_level);
