@@ -214,8 +214,8 @@ function isgamewon()
 		console.pause();  // 0
 
 		var ceil_level = {};
-		ceil_level.size_level = Math.ceil(level.size_level);
-		ceil_level.mine_level = Math.ceil(level.mine_level);
+		ceil_level["size_level"] = Math.ceil(level.size_level);
+		ceil_level["mine_level"] = Math.ceil(level.mine_level);
 
 		console.pause();  // 1
 		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
