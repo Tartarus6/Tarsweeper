@@ -227,7 +227,12 @@ function isgamewon()
 		draw_board(false);
 		show_image(winner_image, true, /* delay: */0);
 		var start = Date.now();
-		var winners = get_winners(Math.ceil(level));
+
+		var ceil_level = {};
+		ceil_level.size_level = Math.ceil(level.size_level);
+		ceil_level.mine_level = Math.ceil(level.mine_level);
+
+		var winners = get_winners(ceil_level);
 		for(var i = 0; i < options.winners; i++) {
 			if(winners[i].name == user.alias && winners[i].end == game.end) {
 				win_rank = i + 1;
@@ -386,14 +391,14 @@ function show_winners(level)
 	console.attributes = YELLOW|BG_CYAN|BG_HIGH;
 	var str = " " + title + " Top " + options.winners;
 	if(level)
-		str += " Level " + level;
+		str += " Level " + level.size_level + "-" + level.mine_level;
 	str += " Winners ";
 	console_center(str);
 	console.attributes = LIGHTGRAY;
 
 	var list = get_winners(level);
 	if(!list.length) {
-		alert("No " + (level ? ("level " + level + " ") : "") + "winners yet!");
+		alert("No " + (level ? ("level " + level.size_level + "-" + level.mine_level + " ") : "") + "winners yet!");
 		return;
 	}
 	console.attributes = WHITE;
@@ -460,7 +465,7 @@ function show_log()
 		return;
 	}
 	console.attributes = WHITE;
-	console.print(format("Date      %-25s Lvl     Time    WxHxMines Rev  Result\r\n", "User", ""));
+	console.print(format("Date      %-25s Lvl          Time    WxHxMines Rev  Result\r\n", "User", ""));
 	
 	list.sort(compare_game);
 	
@@ -470,10 +475,12 @@ function show_log()
 			console.attributes = LIGHTCYAN;
 		else
 			console.attributes = BG_CYAN;
-		console.print(format("%s  %-25s %1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
+		game_dificulty = calc_difficulty(game)
+		console.print(format("%s  %-25s %1.2f-%1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
 			,game.name
-			,calc_difficulty(game)
+			,game_dificulty.size_level
+			,game_dificulty.mine_level
 			,secondstr(calc_time(game), true)
 			,game.width
 			,game.height
