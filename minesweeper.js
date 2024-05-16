@@ -220,11 +220,11 @@ function isgamewon()
 
 		if(!best || !best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
 			new_best = true;
-			console.pause();  // 2
 			if(!best)
 				var best;
 			// delete best[level.size_level][level.mine_level];
-			best[ceil_level.size_level][ceil_level.mine_level] = game;
+			console.pause();  // 2
+			best[ceil_level.size_level][ceil_level.mine_level] = "game";
 		}
 		console.pause();  // 3
 		game.name = user.alias;
