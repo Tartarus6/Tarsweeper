@@ -262,12 +262,14 @@ function isgamewon()
 			console.print(i.toString() + " ")
 			
 			console.gotoxy(0,1);
-			console.print("'game.end=" + game.end + "' ");
+			console.print("game.end='" + game.end + "' ");
 			console.gotoxy(0,2);
-			console.print("'user.alias=" + user.alias + "' ");
+			console.print("user.alias'=" + user.alias + "' ");
 			console.gotoxy(0,3);
-			console.print("'game.end=" + game.end + "' ");
+			console.print("game.end='" + game.end + "' ");
 			console.gotoxy(0,4);
+			console.print("winners[i].name='" + winners[i].name + "' ");
+			console.gotoxy(0,5);
 
 			console.pause();  // i
 			if(winners[i].name == user.alias && winners[i].end == game.end) {
