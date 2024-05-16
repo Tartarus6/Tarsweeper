@@ -222,15 +222,12 @@ function isgamewon()
 			new_best = true;
 			if(!best) {
 				best = {};
-				for (var i=1; i<max_size_level; i++) {
-					best[i] = {};
-				}
 			}
 			// delete best[level.size_level][level.mine_level];
 			console.pause();  // 2
 			//TODO treat these as keys not indices even if int passed.
-			best["0"] = {};
-			best["0"]["0"] = "game";
+			best[level.size_level] = {};
+			best[level.size_level][level.mine_level] = game;
 		}
 		console.pause();  // 3
 		game.name = user.alias;
