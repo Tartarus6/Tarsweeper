@@ -24,7 +24,8 @@ const winner_image = js.exec_dir + "winner.bin";
 const boom_image = js.exec_dir + "boom?.bin";
 const loser_image = js.exec_dir + "loser.bin";
 const max_size_level = 6;
-const max_density_level = 6;
+const max_mine_level = 6;
+const size_level_multiplier = 5;  // defines the number of cells added to the height per size level, and the base size
 const min_mine_density = 0.10;
 const mine_density_multiplier = 0.025;
 const char_flag = '\x9f';
@@ -82,6 +83,17 @@ else {
 	if(!ansiterm)
 		ansiterm = bbs.mods.ansiterm_lib = load({}, "ansiterm_lib.js");
 }
+
+
+// WARNING: The following code is stupid and bad
+// Overwriting difficulty to have 2 aspects
+difficulty = {
+	"size_level": 1,
+	"mine_level": 1
+}
+// STUPID AND BAD CODE OVER
+
+
 var game = {};
 var board = [];
 var selected = {x:0, y:0};
@@ -241,13 +253,16 @@ function lostgame(cause)
 	
 function calc_difficulty(game)
 {
-	const game_cells = game.height * game.width;
+	var level = {}  // "size_level" and "mine_level" properties, both integer
+	
+	
 	const mine_density = game.mines / game_cells;
-	const level = 1 + Math.ceil((mine_density - min_mine_density) / mine_density_multiplier);
-	const target = target_height(level);
-	const target_cells = target * target;
-	const bias = (1 - (game_cells / target_cells)) * 1.5;
-	return level - bias;
+	level.mine_level = 1 + Math.ceil((mine_density - min_mine_density) / mine_density_multiplier);
+
+	const game_cells = game.height * game.width;
+	level.size_level = (game_cells - size_level_multiplier) / size_level_multiplier;
+
+	return level;
 }
 
 function calc_time(game)
@@ -930,17 +945,27 @@ function chord(x, y)
 // function to ask user for difficulty
 // returns an integer
 // 'all' is for if the user is asking for leaderboards, so that they can show all levels
+// returned level of 0 used to show all levels in leaderboards
 function get_difficulty(all)
 {
+	// setting result to impossible values
+	var result = {
+		"size_level": -2,
+		"mine_level": -2
+	};
+
 	console.creturn();
 	console.cleartoeol();
 	draw_border();
 	console.attributes = WHITE;
 	console.clear_hotspots();
 	mouse_enable(false);
-	var lvls = "";
+	var size_lvls = "";
 	for(var i = 1; i <= max_size_level; i++)
-		lvls += "\x01~" + i;
+		size_lvls += "\x01~" + i;
+	var mine_lvls = "";
+	for(var i = 1; i <= max_mine_level; i++)
+		mine_lvls += "\x01~" + i;
 
 	// let user quit out of level selector
 	if(key == 'Q')
@@ -948,22 +973,41 @@ function get_difficulty(all)
 
 	// when asking for leaderboards
 	if(all) {
+		// ask user for size level
 		console.right((console.screen_columns - 20) / 2);
-		console.print(format("Level (%s) [\x01~All]: ", lvls));
+		console.print(format("Size Level (%s) [\x01~All]: ", size_lvls));
 		var key = console.getkeys("QA", max_size_level);
-		if(key == 'A')
-			return 0;
-		return key;
+		if(key == 'A') {
+			result.size_level = 0;
+		}
+		result.size_level = key;
+
+		// ask user for mine level
+		console.right((console.screen_columns - 20) / 2);
+		console.print(format("Mine Level (%s) [\x01~All]: ", mine_lvls));
+		key = console.getkeys("QA", max_mine_level);
+		if(key == 'A') {
+			result.mine_level = 0;
+		}
+		result.mine_level = key;
+
+		return result;
 	}
+
 	console.right((console.screen_columns - 24) / 2);
-	console.print(format("Difficulty Level (%s): ", lvls));
-	var result = console.getnum(max_size_level);
+	console.print(format("Size Level (%s): ", size_lvls));
+	result.size_level = console.getnum(max_size_level);
+	
+	console.right((console.screen_columns - 24) / 2);
+	console.print(format("Mine Level (%s): ", mine_lvls));
+	result.mine_level = console.getnum(max_mine_level);
+	
 	return result;
 }
 
 function target_height(difficulty)
 {
-	return 5 + (difficulty * 5);
+	return size_level_multiplier + (difficulty * size_level_multiplier);
 }
 
 function select_middle()
@@ -983,15 +1027,15 @@ function init_game(difficulty)
 	win_rank = false;
 	view_details = false;
 	game = { rev: REVISION };
-	game.height = target_height(difficulty);
+	game.height = target_height(difficulty.size_level);
 	game.width = game.height;
 	game.height = Math.min(game.height, console.screen_rows - header_height);
 	game.width += game.width - game.height;
-	cell_width = 2;
+	cell_width = 2;  // TODO: this line seems too hard-coded. Maybe reference a const or something
 	game.width = Math.min(game.width, Math.floor((console.screen_columns - 5) / cell_width));
 	game.mines = Math.floor((game.height * game.width) 
-		* (min_mine_density + ((difficulty - 1) * mine_density_multiplier)));
-	log(LOG_INFO, title + " new level " + difficulty + " board WxHxM: " 
+		* (min_mine_density + ((difficulty.mine_level - 1) * mine_density_multiplier)));
+	log(LOG_INFO, title + " new level " + difficulty.size_level + "-" + difficulty.mine_level + " board WxHxM: " 
 		+ format("%u x %u x %u", game.width, game.height, game.mines));
 	game.start = 0;
 	// init board:
@@ -1240,7 +1284,7 @@ function play()
 						break;
 				}
 				var new_difficulty = get_difficulty();
-				if(new_difficulty > 0)
+				if(new_difficulty.size_level > 0)
 					full_redraw = true;
 					difficulty = init_game(new_difficulty);
 				break;
@@ -1274,7 +1318,7 @@ function play()
 				console.home();
 				console.down(top + 1);
 				var level = get_difficulty(true);
-				if(level >= 0) {
+				if(level.size_level >= 0) {
 					full_redraw = true;
 					console.line_counter = 0;
 					show_winners(level);
