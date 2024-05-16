@@ -750,10 +750,10 @@ function draw_board(full)
 			secondstr(elapsed)
 			));
 		
-		console_center(format("Lvl %1.2f-%1.2f"),
+		console_center(format("Lvl %1.2f-%1.2f",
 			calc_difficulty(game).size_level,
 			calc_difficulty(game).mine_level
-		)
+		))
 	}
 	var cmds = "";
 	if(full || cmds !== cmds_shown) {
