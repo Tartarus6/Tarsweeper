@@ -759,7 +759,6 @@ function draw_board(full)
 	if(full || cmds !== cmds_shown) {
 		console.clear_hotspots();
 		draw_border();
-		console_center(cmds);
 		draw_border();
 		
 		cmds += "[\x01h?\x01n]Help";
