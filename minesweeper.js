@@ -258,7 +258,17 @@ function isgamewon()
 		var winners = get_winners(ceil_level);
 
 		for(var i = 0; i < options.winners; i++) {
-			//console.print(i.toString())
+			console.gotoxy(0,0);
+			console.print(i.toString() + " ")
+			
+			console.gotoxy(0,0);
+			console.print("'game.end=" + game.end + "' ");
+			console.gotoxy(0,0);
+			console.print("'user.alias=" + user.alias + "' ");
+			console.gotoxy(0,0);
+			console.print("'game.end=" + game.end + "' ");
+			console.gotoxy(0,0);
+
 			console.pause();  // i
 			if(winners[i].name == user.alias && winners[i].end == game.end) {
 				console.print("m");
