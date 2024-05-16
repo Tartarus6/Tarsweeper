@@ -268,7 +268,7 @@ function isgamewon()
 			console.gotoxy(0,3);
 			console.print("game.end='" + game.end + "' ");
 			console.gotoxy(0,4);
-			console.print("winners[i].name='" + winners[i].name + "' ");
+			console.print("winners[i].name='" + winners[i] + "' ");
 			console.gotoxy(0,5);
 
 			console.pause();  // i
