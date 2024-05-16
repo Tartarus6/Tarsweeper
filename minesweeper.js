@@ -224,7 +224,7 @@ function isgamewon()
 				best = {};
 			// delete best[level.size_level][level.mine_level];
 			console.pause();  // 2
-			best[0][0] = "game";
+			// best[0][0] = "game";
 		}
 		console.pause();  // 3
 		game.name = user.alias;
