@@ -250,6 +250,7 @@ function isgamewon()
 		console.print("4")
 		console.pause();  // 4
 
+		// TODO: fix the below, refers wrongly to levels
 		var winners = get_winners(ceil_level);
 
 		for(var i = 0; i < options.winners; i++) {
@@ -336,6 +337,9 @@ function get_winners(level)
 	if(typeof list != 'object')
 		list = [];
 
+	console.print("a")
+	console.pause();
+
 	if(options.sub) {
 		var msgbase = new MsgBase(options.sub);
 		if(msgbase.get_index !== undefined && msgbase.open()) {
@@ -400,11 +404,17 @@ function get_winners(level)
 		}
 	}
 
+	console.print("b")
+	console.pause();
+
 	if(level)
 		list = list.filter(function (obj) { var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
 			return (difficulty <= level && difficulty > level - 1); });
 			
 	list.sort(compare_won_game);
+
+	console.print("c")
+	console.pause();
 			
 	return list;
 }
