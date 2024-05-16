@@ -12,6 +12,10 @@
 
 // TODO: make something that'll automatically roll over old scores into the new level system
 
+/*
+{"rev":"0.6","height":10,"width":10,"mines":10,"start":1715695309.111,"end":1715695322.782,"name":"Tar"}
+*/
+
 const title = "Tarsweeper";
 const ini_section = "minesweeper";
 const REVISION = "$Revision: 0.6 $".split(' ')[1];
@@ -257,6 +261,8 @@ function isgamewon()
 			console.print(i.toString())
 			console.pause();  // i
 			if(winners[i].name == user.alias && winners[i].end == game.end) {
+				console.print("m");
+				console.pause();  // i
 				win_rank = i + 1;
 				break;
 			}
