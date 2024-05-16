@@ -10,6 +10,8 @@
 
 "use strict";
 
+// TODO: make something that'll automatically roll over old scores into the new level system
+
 const title = "Tarsweeper";
 const ini_section = "minesweeper";
 const REVISION = "$Revision: 0.6 $".split(' ')[1];
@@ -208,13 +210,13 @@ function isgamewon()
 			msgbase.close();
 			game.md5 = undefined;
 		}
-		var level = calc_difficulty(game);
-		if(!best || !best[level] || calc_time(game) < calc_time(best[level])) {
+		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
+		if(!best || !best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
 			new_best = true;
 			if(!best)
 				best = {};
-			delete best[level];
-			best[level] = game;
+			delete best[level.size_level][level.mine_level];
+			best[level.size_level][level.mine_level] = game;
 		}
 		game.name = user.alias;
 		var result = json_lines.add(winners_list, game);
@@ -277,7 +279,7 @@ function calc_time(game)
 
 function compare_won_game(g1, g2)
 {
-	var diff = calc_difficulty(g2) - calc_difficulty(g1);
+	var diff = calc_difficulty(g2) - calc_difficulty(g1);  // TODO: fix, levels update broke it
 	if(diff)
 		return diff;
 	return calc_time(g1) - calc_time(g2);
@@ -376,7 +378,7 @@ function get_winners(level)
 	}
 
 	if(level)
-		list = list.filter(function (obj) { var difficulty = calc_difficulty(obj);
+		list = list.filter(function (obj) { var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
 			return (difficulty <= level && difficulty > level - 1); });
 			
 	list.sort(compare_won_game);
@@ -409,7 +411,7 @@ function show_winners(level)
 	var last_level = 0;
 	for(var i = 0; i < list.length && displayed < options.winners && !console.aborted; i++) {
 		var game = list[i];
-		var difficulty = calc_difficulty(game);
+		var difficulty = calc_difficulty(game);  // TODO: fix, levels update broke it
 		if(Math.ceil(difficulty) != Math.ceil(last_level)) {
 			last_level = difficulty;
 			count = 0;
@@ -475,7 +477,7 @@ function show_log()
 			console.attributes = LIGHTCYAN;
 		else
 			console.attributes = BG_CYAN;
-		game_dificulty = calc_difficulty(game)
+		game_dificulty = calc_difficulty(game)  // TODO: fix, levels update broke it
 		console.print(format("%s  %-25s %1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
 			,game.name
@@ -500,8 +502,9 @@ function show_best()
 	console.attributes = LIGHTGRAY;
 	
 	var wins = [];
-	for(var i in best)
-		wins.push(best[i]);
+	for(var size in best)
+		for (var mine in best[size])
+				wins.push(best[size][mine]);
 	wins.reverse();	// Display newest first
 	
 	console.attributes = WHITE;
@@ -515,7 +518,7 @@ function show_best()
 			console.attributes = BG_CYAN;
 		console.print(format("%s  %1.2f  %s  %3ux%2ux%-3u %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
-			,calc_difficulty(game)
+			,calc_difficulty(game).size_level  // TODO: fix, levels update broke it
 			,secondstr(calc_time(game), true)
 			,game.width, game.height, game.mines
 			,game.rev ? game.rev : ''));
@@ -1108,7 +1111,7 @@ function play()
 		var win = winners[i];
 		if(win.name !== user.alias)
 			continue;
-		var level = calc_difficulty(win);
+		var level = calc_difficulty(win);  // TODO: fix, levels update broke it
 		if(best && best[level] && calc_time(best[level]) < calc_time(win))
 			continue;
 		if(!best)
