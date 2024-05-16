@@ -413,7 +413,7 @@ function get_winners(level)
 			
 	list.sort(compare_won_game);
 
-	console.print(" " + list + " ");
+	console.print(" " + list.toString() + " ");
 	console.pause();
 			
 	return list;
