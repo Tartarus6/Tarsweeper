@@ -225,7 +225,7 @@ function isgamewon()
 			// delete best[level.size_level][level.mine_level];
 			console.pause();  // 2
 			//TODO treat these as keys not indices even if int passed.
-			best[level["size_level"].toString()][level["mine_level"].toString()] = "game";
+			best["0"]["0"] = "game";
 		}
 		console.pause();  // 3
 		game.name = user.alias;
