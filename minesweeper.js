@@ -1069,11 +1069,14 @@ function play()
 	if(now - start < options.splash_delay)
 		sleep(options.splash_delay - (now - start));
 
+	// game startup
 	show_image(mine_image, true);
 	sleep(options.splash_delay);
 	init_game(difficulty);
 	draw_board(true);
 	var full_redraw = false;
+
+	// main loop
 	while(bbs.online) {
 		if(!gameover && game.start
 			&& Date.now() - (game.start * 1000) >= options.timelimit * 60 * 1000) {
