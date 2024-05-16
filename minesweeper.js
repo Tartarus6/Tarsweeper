@@ -476,7 +476,7 @@ function show_log()
 		else
 			console.attributes = BG_CYAN;
 		game_dificulty = calc_difficulty(game)
-		console.print(format("%s  %-25s %1.2f-%1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
+		console.print(format("%s  %-25s %1.2f-%f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
 			,game.name
 			,game_dificulty.size_level
