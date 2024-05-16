@@ -744,8 +744,8 @@ function draw_board(full)
 		}
 		var timeleft = Math.max(0, (options.timelimit * 60) - elapsed);
 		console.attributes = LIGHTCYAN;
-		console_center(format("%2d Mines  Lvl %0  %s%s "
-			, game.mines - totalflags(), calc_difficulty(game)
+		console_center(format("%2d Mines  Lvl %s  %s%s "
+			, game.mines - totalflags(), calc_difficulty(game).size_level
 			, game.start && !gameover && (timeleft / 60) <= options.timewarn ? "\x01r\x01h\x01i" : ""
 			, secondstr(elapsed)
 			));
