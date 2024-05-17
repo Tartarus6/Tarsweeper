@@ -1171,6 +1171,7 @@ function play()
 	var winners = json_lines.get(winners_list);
 	for(var i in winners) {
 		var win = winners[i];
+		console.print(" :thing: " + JSON.stringify(winners) + " :endthing: ");
 		if(win.name !== user.alias)
 			continue;
 		var level = calc_difficulty(win);  // TODO: fix, levels update broke it
