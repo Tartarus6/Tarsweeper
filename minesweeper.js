@@ -251,25 +251,26 @@ function isgamewon()
 		show_image(winner_image, true, /* delay: */0);
 		var start = Date.now();
 
-		console.print("4")
+		// TODO: fix the below, refers wrongly to levels
+		var winners = get_winners(level);
+
+		console.gotoxy(0,0);
+		console.print("+" + winners.toString() + "+");
 		console.pause();  // 4
 
-		// TODO: fix the below, refers wrongly to levels
-		var winners = get_winners(ceil_level);
-
 		for(var i = 0; i < options.winners; i++) {
-			console.gotoxy(0,0);
+			console.gotoxy(0,1);
 			console.print(i.toString() + " ")
 			
-			console.gotoxy(0,1);
-			console.print("game.end='" + game.end + "' ");
 			console.gotoxy(0,2);
-			console.print("user.alias'=" + user.alias + "' ");
-			console.gotoxy(0,3);
 			console.print("game.end='" + game.end + "' ");
+			console.gotoxy(0,3);
+			console.print("user.alias'=" + user.alias + "' ");
 			console.gotoxy(0,4);
-			console.print("winners[i].name='" + winners.toString() + "' ");
+			console.print("game.end='" + game.end + "' ");
 			console.gotoxy(0,5);
+			console.print("winners[0].name='" + winners[0] + "' ");
+			console.gotoxy(0,6);
 
 			console.pause();  // i
 			if(winners[i].name == user.alias && winners[i].end == game.end) {
@@ -349,6 +350,7 @@ function list_contains(list, obj)
 	return match;
 }
 
+// TODO: i do not understand this function. do that
 function get_winners(level)
 {
 	var list = json_lines.get(winners_list);
@@ -1171,7 +1173,7 @@ function play()
 	var winners = json_lines.get(winners_list);
 	for(var i in winners) {
 		var win = winners[i];
-		console.print(" :thing: " + JSON.stringify(winners) + " :endthing: ");
+		// console.print(" :thing: " + JSON.stringify(winners) + " :endthing: ");
 		if(win.name !== user.alias)
 			continue;
 		var level = calc_difficulty(win);  // TODO: fix, levels update broke it
