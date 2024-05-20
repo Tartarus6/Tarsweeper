@@ -215,8 +215,6 @@ function isgamewon()
 			game.md5 = undefined;
 		}
 
-		console.print("1")
-		console.pause();  // 1
 		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
 
 		var ceil_level = {};
@@ -229,15 +227,11 @@ function isgamewon()
 				best = {};
 			}
 			// delete best[level.size_level][level.mine_level];
-			console.print("2")
-			console.pause();  // 2
 			//TODO treat these as keys not indices even if int passed.
 			best[level.size_level] = {};
 			best[level.size_level][level.mine_level] = game;
 		}
 		
-		console.print("3")
-		console.pause();  // 3
 		
 		game.name = user.alias;
 		var result = json_lines.add(winners_list, game);
@@ -254,35 +248,13 @@ function isgamewon()
 		// TODO: fix the below, refers wrongly to levels
 		var winners = get_winners(level);
 
-		console.gotoxy(0,0);
-		console.print("+" + winners.toString() + "+");
-		console.pause();  // 4
-
 		for(var i = 0; i < options.winners; i++) {
-			console.gotoxy(0,1);
-			console.print(i.toString() + " ")
-			
-			console.gotoxy(0,2);
-			console.print("game.end='" + game.end + "' ");
-			console.gotoxy(0,3);
-			console.print("user.alias'=" + user.alias + "' ");
-			console.gotoxy(0,4);
-			console.print("game.end='" + game.end + "' ");
-			console.gotoxy(0,5);
-			console.print("winners[0].name='" + winners[0] + "' ");
-			console.gotoxy(0,6);
-
-			console.pause();  // i
 			if(winners[i].name == user.alias && winners[i].end == game.end) {
-				console.print("m");
-				console.pause();  // i
 				win_rank = i + 1;
 				break;
 			}
 		}
 
-		console.print("6")
-		console.pause();  // 6
 
 		var now = Date.now();
 		if(now - start < options.image_delay)
@@ -322,32 +294,12 @@ function calc_time(game)
 
 function compare_won_game(g1, g2)
 {
-	/*
-	var diff = calc_difficulty(g2) - calc_difficulty(g1);  // TODO: fix, levels update broke it
-	if(diff)
-		return diff;
-	return calc_time(g1) - calc_time(g2);
-	*/
-
-	/*
-	console.print("somethin");
-	console.pause();
-	*/
-
 	var diff = {
 		"size_diff": 0,
 		"mine_diff": 0
 	};
 	diff.size_diff = calc_difficulty(g2).size_level - calc_difficulty(g1).size_level;
 	diff.mine_diff = calc_difficulty(g2).mine_level - calc_difficulty(g1).mine_level;
-
-	/*
-	console.gotoxy(0,7);
-	console.print("size" + diff.size_diff);
-	console.gotoxy(0,8);
-	console.print("mine" + diff.mine_diff);
-	console.pause();
-	*/
 
 	if (diff.size_diff) {
 		return diff.size_diff;
@@ -387,8 +339,6 @@ function get_winners(level)
 	if(typeof list != 'object')
 		list = [];
 
-	console.print("a")
-	console.pause();
 
 	if(options.sub) {
 		var msgbase = new MsgBase(options.sub);
@@ -454,9 +404,8 @@ function get_winners(level)
 		}
 	}
 
-	console.print("b")
-	console.pause();
 
+	// TODO: understand how the code below works, it should just return the games matching the given difficulty
 	/*
 	if(level) {
 		list = list.filter(function (obj) { var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
@@ -470,11 +419,6 @@ function get_winners(level)
 			
 	list.sort(compare_won_game)
 
-	console.gotoxy(0,0);
-	console.print("~test~");
-	console.pause();
-	console.print("~" + JSON.stringify(list) + "~");
-	console.pause();
 			
 	return list;
 }
