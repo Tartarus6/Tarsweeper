@@ -465,6 +465,7 @@ function show_winners(level)
 			,game.name
 			,game.net_addr ? ('@'+game.net_addr) : ''
 			,difficulty.size_level
+			,difficulty.mine_level
 			,secondstr(calc_time(game), true)
 			,game.width
 			,game.height
