@@ -322,10 +322,24 @@ function calc_time(game)
 
 function compare_won_game(g1, g2)
 {
+	/*
 	var diff = calc_difficulty(g2) - calc_difficulty(g1);  // TODO: fix, levels update broke it
 	if(diff)
 		return diff;
 	return calc_time(g1) - calc_time(g2);
+	*/
+
+	var diff = {};
+	diff["size_diff"] = calc_difficulty(g2).size_level - calc_difficulty(g1).size_level;
+	diff["mine_diff"] = calc_difficulty(g2).mine_level - calc_difficulty(g1).mine_level;
+
+	if (diff.size_diff) {
+		return diff.size_diff;
+	} else if (diff.mine_diff) {
+		return diff.mine_diff;
+	} else {
+		return calc_time(g1) - calc_time(g2);
+	}
 }
 
 function secondstr(t, frac)
