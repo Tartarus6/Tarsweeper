@@ -329,6 +329,9 @@ function compare_won_game(g1, g2)
 	return calc_time(g1) - calc_time(g2);
 	*/
 
+	console.print("somethin");
+	console.pause();
+
 	var diff = {
 		"size_diff": 0,
 		"mine_diff": 0
@@ -340,6 +343,7 @@ function compare_won_game(g1, g2)
 	console.print("size" + diff.size_diff);
 	console.gotoxy(0,8);
 	console.print("mine" + diff.mine_diff);
+	console.pause();
 
 	if (diff.size_diff) {
 		return diff.size_diff;
