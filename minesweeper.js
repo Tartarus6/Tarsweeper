@@ -438,8 +438,8 @@ function get_winners(level)
 			
 	list.sort(compare_won_game)
 
-	// console.print("+" + list.stringify() + "+");
-	// console.pause();
+	console.print("~" + list.stringify() + "~");
+	console.pause();
 			
 	return list;
 }
