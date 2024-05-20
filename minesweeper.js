@@ -441,7 +441,7 @@ function show_winners(level)
 		return;
 	}
 	console.attributes = WHITE;
-	console.print(format("    %-25s%-15s Size-Mine     Time       WxHxMines   Date\r\n", "User", ""));
+	console.print(format("    %-25s%-15s Size-Mine   Time       WxHxMines   Date\r\n", "User", ""));
 
 	var count = 0;
 	var displayed = 0;
@@ -460,7 +460,7 @@ function show_winners(level)
 			console.attributes = LIGHTCYAN;
 		else
 			console.attributes = BG_CYAN;
-		console.print(format("%3u %-25.25s%-15.15s %1.2f-%1.2f    %s  %3ux%2ux%-3u   %s\x01>\r\n"
+		console.print(format("%3u %-25.25s%-15.15s %1.2f-%1.2f  %s  %3ux%2ux%-3u   %s\x01>\r\n"
 			,count + 1
 			,game.name
 			,game.net_addr ? ('@'+game.net_addr) : ''
