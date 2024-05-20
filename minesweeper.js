@@ -473,7 +473,7 @@ function get_winners(level)
 	console.gotoxy(0,0);
 	console.print("~test~");
 	console.pause();
-	console.print("~" + list.stringify() + "~");
+	console.print("~" + JSON.stringify(list) + "~");
 	console.pause();
 			
 	return list;
