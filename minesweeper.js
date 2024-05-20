@@ -406,16 +406,14 @@ function get_winners(level)
 
 
 	// TODO: understand how the code below works, it should just return the games matching the given difficulty
-	/*
+	
+	// filter for level if given
 	if(level) {
 		list = list.filter(function (obj) { var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
 
-		// console.print("-" + JSON.stringify(list) + "-");
-		// console.pause();
-
-		return (difficulty <= level && difficulty > level - 1); });
+		return (diffiulty.size_level == Math.round(level.size_level) && diffiulty.mine_level == Math.round(level.mine_level)); });
 	}
-	*/
+	
 			
 	list.sort(compare_won_game)
 
