@@ -466,6 +466,9 @@ function get_winners(level)
 			
 	list.sort(compare_won_game)
 
+	console.gotoxy(0,0);
+	console.print("~test~");
+	console.pause();
 	console.print("~" + list.stringify() + "~");
 	console.pause();
 			
