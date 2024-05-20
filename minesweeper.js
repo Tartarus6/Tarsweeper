@@ -329,9 +329,17 @@ function compare_won_game(g1, g2)
 	return calc_time(g1) - calc_time(g2);
 	*/
 
-	var diff = {};
-	diff["size_diff"] = calc_difficulty(g2).size_level - calc_difficulty(g1).size_level;
-	diff["mine_diff"] = calc_difficulty(g2).mine_level - calc_difficulty(g1).mine_level;
+	var diff = {
+		"size_diff": 0,
+		"mine_diff": 0
+	};
+	diff.size_diff = calc_difficulty(g2).size_level - calc_difficulty(g1).size_level;
+	diff.mine_diff = calc_difficulty(g2).mine_level - calc_difficulty(g1).mine_level;
+
+	console.gotoxy(0,7);
+	console.print("size" + diff.size_diff);
+	console.gotoxy(0,8);
+	console.print("mine" + diff.mine_diff);
 
 	if (diff.size_diff) {
 		return diff.size_diff;
