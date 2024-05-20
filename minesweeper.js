@@ -429,7 +429,7 @@ function show_winners(level)
 	console.aborted = false;
 	console.attributes = YELLOW|BG_CYAN|BG_HIGH;
 	var str = " " + title + " Top " + options.winners;
-	if(level)
+	if(level.size_level)
 		str += " Level " + level.size_level + "-" + level.mine_level;
 	str += " Winners ";
 	console_center(str);
