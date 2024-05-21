@@ -446,7 +446,7 @@ function get_winners(level)
 			console.gotoxy(0,0);
 			console.print("n");
 			console.pause();
-			return (diffiulty.size_level == Math.round(level.size_level) && diffiulty.mine_level == Math.round(level.mine_level)); 
+			return (diffiulty.size_level === Math.round(level.size_level) && diffiulty.mine_level === Math.round(level.mine_level)); 
 		});
 	}
 
