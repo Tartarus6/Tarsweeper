@@ -451,7 +451,9 @@ function show_winners(level)
 	for(var i = 0; i < list.length && displayed < options.winners && !console.aborted; i++) {
 		var game = list[i];
 		var difficulty = calc_difficulty(game);
-		if(Math.ceil(difficulty.size_level) != Math.ceil(last_level.size_level) || Math.ceil(difficulty.mine_level) != Math.ceil(last_level.mine_level)) {
+		// if(Math.ceil(difficulty) != Math.ceil(last_level)) {  // original code
+		// if(Math.ceil(difficulty.size_level) != Math.ceil(last_level.size_level) || Math.ceil(difficulty.mine_level) != Math.ceil(last_level.mine_level)) {  // modified code
+		if(true) {  // debug code
 			last_level = difficulty;
 			count = 0;
 		} else {
