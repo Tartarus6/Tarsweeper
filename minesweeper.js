@@ -438,9 +438,16 @@ function get_winners(level)
 	
 	// filter for level if given
 	if(level) {
-		list = list.filter(function (obj) { var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
-
-		return (diffiulty.size_level == Math.round(level.size_level) && diffiulty.mine_level == Math.round(level.mine_level)); });
+		list = list.filter(function (obj) {
+			console.gotoxy(0,0);
+			console.print("m");
+			console.pause();
+			var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
+			console.gotoxy(0,0);
+			console.print("n");
+			console.pause();
+			return (diffiulty.size_level == Math.round(level.size_level) && diffiulty.mine_level == Math.round(level.mine_level)); 
+		});
 	}
 
 	console.gotoxy(0,0);
