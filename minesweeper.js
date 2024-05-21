@@ -272,6 +272,10 @@ function isgamewon()
 			}
 		}
 
+		console.gotoxy(0,3);
+		console.print("d");
+		console.pause();
+
 
 		var now = Date.now();
 		if(now - start < options.image_delay)
