@@ -215,11 +215,6 @@ function isgamewon()
 			game.md5 = undefined;
 		}
 
-
-		console.gotoxy(0,0);
-		console.print("a");
-		console.pause();
-
 		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
 
 		var ceil_level = {};
@@ -236,10 +231,6 @@ function isgamewon()
 			best[level.size_level] = {};
 			best[level.size_level][level.mine_level] = game;
 		}
-
-		console.gotoxy(0,1);
-		console.print("b");
-		console.pause();
 		
 		
 		game.name = user.alias;
@@ -254,10 +245,6 @@ function isgamewon()
 		show_image(winner_image, true, /* delay: */0);
 		var start = Date.now();
 
-		console.gotoxy(0,2);
-		console.print("c");
-		console.pause();
-
 		// TODO: fix the below, refers wrongly to levels
 		var winners = get_winners(level);
 
@@ -267,11 +254,6 @@ function isgamewon()
 				break;
 			}
 		}
-
-		console.gotoxy(0,3);
-		console.print("d");
-		console.pause();
-
 
 		var now = Date.now();
 		if(now - start < options.image_delay)
@@ -356,10 +338,6 @@ function get_winners(level)
 	if(typeof list != 'object')
 		list = [];
 
-	console.gotoxy(0,0);
-	console.print("z");
-	console.pause();
-
 
 	if(options.sub) {
 		var msgbase = new MsgBase(options.sub);
@@ -425,11 +403,6 @@ function get_winners(level)
 		}
 	}
 
-	console.gotoxy(0,0);
-	console.print("y");
-	console.pause();
-
-
 	// TODO: understand how the code below works, it should just return the games matching the given difficulty
 	
 	// filter for level if given
@@ -439,10 +412,6 @@ function get_winners(level)
 			return (difficulty.size_level == Math.round(level.size_level) && difficulty.mine_level == Math.round(level.mine_level));
 		});
 	}
-
-	console.gotoxy(0,0);
-	console.print("x");
-	console.pause();
 	
 			
 	list.sort(compare_won_game)
