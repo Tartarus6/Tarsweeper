@@ -188,10 +188,6 @@ function place_mines()
 
 function isgamewon()
 {
-	console.gotoxy(0,0);
-	console.print("1");
-	console.pause();
-
 	var covered = 0;
 	for(var y = 0; y < game.height; y++) {
 		for(var x = 0; x < game.width; x++) {
@@ -447,7 +443,7 @@ function get_winners(level)
 			console.print("n");
 			console.pause();
 			// return (diffiulty.size_level === Math.round(level.size_level) && diffiulty.mine_level === Math.round(level.mine_level));
-			return (true);
+			return (true);  // TODO: this is debug
 		});
 	}
 
