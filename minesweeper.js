@@ -407,11 +407,6 @@ function get_winners(level)
 	
 	// filter for level if given
 	if(level) {
-		list = list.filter(function (obj) { var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
-
-		
-
-		return (diffiulty.size_level == Math.round(level.size_level) && diffiulty.mine_level == Math.round(level.mine_level)); });
 		list = list.filter(function (obj) {
 			var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
 			return (difficulty.size_level == Math.round(level.size_level) && difficulty.mine_level == Math.round(level.mine_level));
@@ -450,16 +445,11 @@ function show_winners(level)
 	var last_level = 0;
 	for(var i = 0; i < list.length && displayed < options.winners && !console.aborted; i++) {
 		var game = list[i];
-		var difficulty = calc_difficulty(game);
-		if(Math.ceil(difficulty) != Math.ceil(last_level)) {  // original code
-		// if(Math.ceil(difficulty.size_level) != Math.ceil(last_level.size_level) || Math.ceil(difficulty.mine_level) != Math.ceil(last_level.mine_level)) {  // modified code
-		// if(true) {  // debug code
+		var difficulty = calc_difficulty(game);  // TODO: fix, levels update broke it
+		if(Math.ceil(difficulty) != Math.ceil(last_level)) {
 			last_level = difficulty;
 			count = 0;
 		} else {
-			
-			// TODO: fix, levels update broke it
-			// TODO: wtf is the if statement below. i do not get
 			if(!level && difficulty > 1.0 && count >= options.winners / max_size_level)
 				continue;
 		}
