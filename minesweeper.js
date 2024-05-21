@@ -223,6 +223,10 @@ function isgamewon()
 		ceil_level["size_level"] = Math.ceil(level.size_level);
 		ceil_level["mine_level"] = Math.ceil(level.mine_level);
 
+		console.gotoxy(0,0);
+		console.print(JSON.stringify(best));
+		console.pause();
+
 		// TODO: if statement below triggers when it shouldnt
 		if(!best || !best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
 			new_best = true;
@@ -233,10 +237,6 @@ function isgamewon()
 			//TODO treat these as keys not indices even if int passed.
 			best[level.size_level] = {};
 			best[level.size_level][level.mine_level] = game;
-
-			console.gotoxy(0,0);
-			console.print(JSON.stringify(best));
-			console.pause();
 		}
 		
 		
