@@ -188,6 +188,10 @@ function place_mines()
 
 function isgamewon()
 {
+	console.gotoxy(0,0);
+	console.print("1");
+	console.pause();
+
 	var covered = 0;
 	for(var y = 0; y < game.height; y++) {
 		for(var x = 0; x < game.width; x++) {
