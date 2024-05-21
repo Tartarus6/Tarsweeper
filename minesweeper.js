@@ -478,8 +478,6 @@ function show_winners(level)
 			,game.mines
 			,system.datestr(game.end)
 		));
-		console.print("              count: " + count);
-		console.pause();
 		count++;
 		displayed++;
 	}
