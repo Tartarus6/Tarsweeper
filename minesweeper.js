@@ -446,9 +446,14 @@ function show_winners(level)
 	var count = 0;
 	var displayed = 0;
 	var last_level = 0;
+	var game = list[0];
+	var difficulty = calc_difficulty(game)
+
 	for(var i = 0; i < list.length && displayed < options.winners && !console.aborted; i++) {
-		var game = list[i];
-		var difficulty = calc_difficulty(game);  // TODO: fix, levels update broke it
+		game = list[i];
+		difficulty = calc_difficulty(game);
+		// TODO: reimplement the code below
+		/*
 		if(Math.ceil(difficulty) != Math.ceil(last_level)) {
 			last_level = difficulty;
 			console.pause();
@@ -457,6 +462,7 @@ function show_winners(level)
 			if(!level && difficulty > 1.0 && count >= options.winners / max_size_level)
 				continue;
 		}
+		*/
 		if(displayed&1)
 			console.attributes = LIGHTCYAN;
 		else
