@@ -442,6 +442,7 @@ function show_winners(level)
 	console.attributes = WHITE;
 	console.print(format("    %-25s%-15s Size-Mine   Time       WxHxMines   Date\r\n", "User", ""));
 
+	console.pause();
 	var count = 0;
 	var displayed = 0;
 	var last_level = 0;
