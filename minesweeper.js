@@ -12,7 +12,7 @@
 
 // TODO: make something that'll automatically roll over old scores into the new level system
 // TODO: fix it always saying "personal best time" even for bad times
-// TODO: fix count on leaderboard. always says 1
+// TODO: fix code that for some reason resets leaderboard count in leaderboard function (commented out code)
 
 /*
 {"rev":"0.6","height":10,"width":10,"mines":10,"start":1715695309.111,"end":1715695322.782,"name":"Tar"}
@@ -223,6 +223,7 @@ function isgamewon()
 		ceil_level["size_level"] = Math.ceil(level.size_level);
 		ceil_level["mine_level"] = Math.ceil(level.mine_level);
 
+		// TODO: if statement below triggers when it shouldnt
 		if(!best || !best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
 			new_best = true;
 			if(!best) {
@@ -232,6 +233,10 @@ function isgamewon()
 			//TODO treat these as keys not indices even if int passed.
 			best[level.size_level] = {};
 			best[level.size_level][level.mine_level] = game;
+
+			console.gotoxy(0,0);
+			console.print(JSON.stringify(best));
+			console.pause();
 		}
 		
 		
