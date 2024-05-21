@@ -360,6 +360,10 @@ function get_winners(level)
 	if(typeof list != 'object')
 		list = [];
 
+	console.gotoxy(0,0);
+	console.print("z");
+	console.pause();
+
 
 	if(options.sub) {
 		var msgbase = new MsgBase(options.sub);
@@ -425,6 +429,10 @@ function get_winners(level)
 		}
 	}
 
+	console.gotoxy(0,0);
+	console.print("y");
+	console.pause();
+
 
 	// TODO: understand how the code below works, it should just return the games matching the given difficulty
 	
@@ -434,6 +442,10 @@ function get_winners(level)
 
 		return (diffiulty.size_level == Math.round(level.size_level) && diffiulty.mine_level == Math.round(level.mine_level)); });
 	}
+
+	console.gotoxy(0,0);
+	console.print("x");
+	console.pause();
 	
 			
 	list.sort(compare_won_game)
