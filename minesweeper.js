@@ -30,10 +30,10 @@ const winner_image = js.exec_dir + "winner.bin";
 const boom_image = js.exec_dir + "boom?.bin";
 const loser_image = js.exec_dir + "loser.bin";
 const max_size_level = 6;
-const max_mine_level = 6;
+const max_mine_level = 3;
 const size_level_multiplier = 5;  // defines the number of cells added to the height per size level, and the base size
-const min_mine_density = 0.10;
-const mine_density_multiplier = 0.025;
+const min_mine_density = 0.1;
+const mine_density_multiplier = 0.1;
 const char_flag = '\x9f';
 const char_badflag = '!';
 // const char_unsure = '?';
@@ -255,7 +255,6 @@ function isgamewon()
 			}
 		}
 
-
 		var now = Date.now();
 		if(now - start < options.image_delay)
 			sleep(options.image_delay - (now - start));
@@ -279,7 +278,7 @@ function calc_difficulty(game)
 	
 	const game_cells = game.height * game.width;	
 	const mine_density = game.mines / game_cells;
-	level.mine_level = 1 + Math.ceil((mine_density - min_mine_density) / mine_density_multiplier);  // always int
+	level.mine_level = 1 + Math.floor((mine_density - min_mine_density) / mine_density_multiplier);  // always int
 
 	const average_dimension = (game.height + game.width) / 2;
 	level.size_level = (average_dimension - size_level_multiplier) / size_level_multiplier;  // always float, usually int aligned
@@ -404,7 +403,6 @@ function get_winners(level)
 		}
 	}
 
-
 	// TODO: understand how the code below works, it should just return the games matching the given difficulty
 	
 	// filter for level if given
@@ -414,6 +412,10 @@ function get_winners(level)
 		
 
 		return (diffiulty.size_level == Math.round(level.size_level) && diffiulty.mine_level == Math.round(level.mine_level)); });
+		list = list.filter(function (obj) {
+			var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
+			return (difficulty.size_level == Math.round(level.size_level) && difficulty.mine_level == Math.round(level.mine_level));
+		});
 	}
 	
 			
