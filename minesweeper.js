@@ -11,6 +11,8 @@
 "use strict";
 
 // TODO: make something that'll automatically roll over old scores into the new level system
+// TODO: fix it always saying "personal best time" even for bad times
+// TODO: fix count on leaderboard. always says 1
 
 /*
 {"rev":"0.6","height":10,"width":10,"mines":10,"start":1715695309.111,"end":1715695322.782,"name":"Tar"}
@@ -448,6 +450,7 @@ function show_winners(level)
 		var difficulty = calc_difficulty(game);  // TODO: fix, levels update broke it
 		if(Math.ceil(difficulty) != Math.ceil(last_level)) {
 			last_level = difficulty;
+			console.pause();
 			count = 0;
 		} else {
 			if(!level && difficulty > 1.0 && count >= options.winners / max_size_level)
