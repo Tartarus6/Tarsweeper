@@ -215,6 +215,11 @@ function isgamewon()
 			game.md5 = undefined;
 		}
 
+
+		console.gotoxy(0,0);
+		console.print("a");
+		console.pause();
+
 		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
 
 		var ceil_level = {};
@@ -231,6 +236,10 @@ function isgamewon()
 			best[level.size_level] = {};
 			best[level.size_level][level.mine_level] = game;
 		}
+
+		console.gotoxy(0,1);
+		console.print("b");
+		console.pause();
 		
 		
 		game.name = user.alias;
@@ -244,6 +253,10 @@ function isgamewon()
 		draw_board(false);
 		show_image(winner_image, true, /* delay: */0);
 		var start = Date.now();
+
+		console.gotoxy(0,2);
+		console.print("c");
+		console.pause();
 
 		// TODO: fix the below, refers wrongly to levels
 		var winners = get_winners(level);
