@@ -279,7 +279,7 @@ function calc_difficulty(game)
 	
 	const game_cells = game.height * game.width;	
 	const mine_density = game.mines / game_cells;
-	level.mine_level = 1 + Math.ceil((mine_density - min_mine_density) / mine_density_multiplier);  // always int
+	level.mine_level = 1 + Math.floor((mine_density - min_mine_density) / mine_density_multiplier);  // always int
 
 	const average_dimension = (game.height + game.width) / 2;
 	level.size_level = (average_dimension - size_level_multiplier) / size_level_multiplier;  // always float, usually int aligned
