@@ -227,12 +227,14 @@ function isgamewon()
 		console.print(JSON.stringify(best));
 		console.pause();
 
+
+		if(!best) {
+			best = {};
+		}
+
 		// TODO: if statement below triggers when it shouldnt
-		if(!best || !best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
+		if(!best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
 			new_best = true;
-			if(!best) {
-				best = {};
-			}
 			// delete best[level.size_level][level.mine_level];
 			//TODO treat these as keys not indices even if int passed.
 			best[level.size_level] = {};
@@ -285,7 +287,7 @@ function calc_difficulty(game)
 	
 	const game_cells = game.height * game.width;	
 	const mine_density = game.mines / game_cells;
-	level.mine_level = 1 + Math.floor((mine_density - min_mine_density) / mine_density_multiplier);  // always int
+	level.mine_level = 1 + Math.round((mine_density - min_mine_density) / mine_density_multiplier);  // always int
 
 	const average_dimension = (game.height + game.width) / 2;
 	level.size_level = (average_dimension - size_level_multiplier) / size_level_multiplier;  // always float, usually int aligned
