@@ -1180,12 +1180,13 @@ function play()
 			best[level.size_level] = {};
 		}
 
+		// TODO: skip statement below might be redundant
 		// skip if not new best
 		if(best[level.size_level][level.mine_level] && calc_time(best[level.size_level][level.mine_level]) < calc_time(win))
 			continue;
 		// add if new best
-		if(!best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
-			best[level.size_level][level.mine_level] = game;
+		if(!best[level.size_level][level.mine_level] || calc_time(win) < calc_time(best[level.size_level][level.mine_level])) {
+			best[level.size_level][level.mine_level] = win;
 		}
 	}
 	var now = Date.now();
