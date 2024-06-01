@@ -523,14 +523,25 @@ function show_log()
 	console.print(format("Date      %-25s Lvl          Time    WxHxMines Rev  Result\r\n", "User", ""));
 	
 	list.sort(compare_game);
+
+	console.print("a");
+	console.pause();
 	
 	for(var i = 0; i < list.length && !console.aborted; i++) {
 		var game = list[i];
+
+		console.print("b");
+		console.pause();
+
 		if(i&1)
 			console.attributes = LIGHTCYAN;
 		else
 			console.attributes = BG_CYAN;
 		game_dificulty = calc_difficulty(game)  // TODO: fix, levels update broke it
+
+		console.print("c");
+		console.pause();
+
 		console.print(format("%s  %-25s %1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
 			,game.name
@@ -1171,7 +1182,7 @@ function play()
 		// console.print(" :thing: " + JSON.stringify(winners) + " :endthing: ");
 		if(win.name !== user.alias)
 			continue;
-		var level = calc_difficulty(win);  // TODO: fix, levels update broke it
+		var level = calc_difficulty(win);
 		
 		// add new entries to `best`
 		if(!best)
