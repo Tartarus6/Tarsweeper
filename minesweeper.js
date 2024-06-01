@@ -285,11 +285,18 @@ function lostgame(cause)
 	
 function calc_difficulty(game)
 {
+
+	console.print(1);
+	console.pause();
+
 	var level = {}  // "size_level" and "mine_level" properties, both usually integer
 	
 	const game_cells = game.height * game.width;	
 	const mine_density = game.mines / game_cells;
 	level.mine_level = 1 + Math.round((mine_density - min_mine_density) / mine_density_multiplier);  // always int
+
+	console.print(2);
+	console.pause();
 
 	const average_dimension = (game.height + game.width) / 2;
 	level.size_level = (average_dimension - size_level_multiplier) / size_level_multiplier;  // always float, usually int aligned
