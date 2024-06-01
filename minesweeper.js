@@ -232,12 +232,14 @@ function isgamewon()
 			best = {};
 		}
 
-		// TODO: if statement below triggers when it shouldnt
-		if(!best[level.size_level] || !best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
+		if(!best[level.size_level]) {
+			best[level.size_level] = {};
+		}
+		if(!best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
 			new_best = true;
 			// delete best[level.size_level][level.mine_level];
+			
 			//TODO treat these as keys not indices even if int passed.
-			best[level.size_level] = {};
 			best[level.size_level][level.mine_level] = game;
 		}
 		
@@ -1170,12 +1172,21 @@ function play()
 		if(win.name !== user.alias)
 			continue;
 		var level = calc_difficulty(win);  // TODO: fix, levels update broke it
-		if(best && best[level] && calc_time(best[level]) < calc_time(win))
-			continue;
+		
+		// add new entries to `best`
 		if(!best)
 			best = {};
-		delete best[level];
-		best[level] = win;
+		if(!best[level.size_level]) {
+			best[level.size_level] = {};
+		}
+
+		// skip if not new best
+		if(best[level.size_level][level.mine_level] && calc_time(best[level.size_level][level.mine_level]) < calc_time(win))
+			continue;
+		// add if new best
+		if(!best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
+			best[level.size_level][level.mine_level] = game;
+		}
 	}
 	var now = Date.now();
 	if(now - start < options.splash_delay)
