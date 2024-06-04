@@ -335,12 +335,6 @@ function list_contains(list, obj)
 // TODO: i do not understand this function. do that
 function get_winners(level)
 {
-	console.print(level.size_level);
-	console.pause();
-	console.print(level.mine_level);
-	console.pause();
-
-
 	var list = json_lines.get(winners_list);
 	if(typeof list != 'object')
 		list = [];
