@@ -775,7 +775,7 @@ function draw_board(full)
 	} else
 		console.down(top + 1);
 	if(gamewon) {
-		console.attributes = YELLOW|BLINK;
+		console.attributes = BLACK|BLINK;
 		var blurb = "Winner! Cleared in";
 		if(win_rank)
 			blurb = "Rank " + win_rank + " Winner in";
