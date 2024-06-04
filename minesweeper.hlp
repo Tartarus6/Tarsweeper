@@ -7,7 +7,7 @@
 @CENTER@hYou're in a mine field!n
 
 The object of the game is to uncover all the safe areas (blocks) in the mine
-field without uncovering (detonating) any mines (rën), within the allowed time!
+field without uncovering (detonating) any mines (rï¿½n), within the allowed time!
 It's a game of quick deduction, pattern-recognition, and a little bit o' luck!
 
 hMain Controlsn:
@@ -29,7 +29,7 @@ It's a game of quick deduction, pattern-recognition, and a little bit o' luck!
   These digits are your clue where the next mine or empty block may be located.
   When all empty blocks are uncovered, the game is won!
 
-- hcFlagn (rŸn) a covered block as having a suspected mine with the hg[F]:n key.
+- hcFlagn (rï¿½n) a covered block as having a suspected mine with the hg[F]:n key.
   You can also remove a flag by pressing hg[F]:n again.
   If you lose, incorrectly-flagged safe blocks are indicated with a 'rh!n'.
   
@@ -53,6 +53,7 @@ It's a game of quick deduction, pattern-recognition, and a little bit o' luck!
 - hg[F]:n Flag key
 - hg[W]:n Alternate flag key
 - hg[N]:n Begin 'new game' dialogue
+- hg[R]:n Retry current difficulty (can run any time)
 - hg[Tab]:n Toggle affected-area highlight
 - hg[L]:n Shows the leaderboard for the chosen level (sorted by speed)
 - hg[B]:n Shows personal best games for each level
