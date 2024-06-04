@@ -1033,9 +1033,6 @@ function get_difficulty(all)
 	for(var i = 1; i <= max_mine_level; i++)
 		mine_lvls += "\x01~" + i;
 
-	// let user quit out of level selector
-	if(key == 'Q')
-		return -1;
 
 	// when asking for leaderboards
 	if(all) {
@@ -1046,6 +1043,9 @@ function get_difficulty(all)
 		if(key == 'A') {
 			result.size_level = 0;
 		}
+		else if(key == 'Q') {  // let user quit out of level selector
+			result.size_level = -1;
+		}
 		result.size_level = key;
 
 		// ask user for mine level
@@ -1054,6 +1054,9 @@ function get_difficulty(all)
 		key = console.getkeys("QA", max_mine_level);
 		if(key == 'A') {
 			result.mine_level = 0;
+		}
+		else if(key == 'Q') {  // let user quit out of level selector
+			result.size_level = -1;
 		}
 		result.mine_level = key;
 
