@@ -541,7 +541,7 @@ function show_log()
 		console.print("c");
 		console.pause();
 
-		game_dificulty = calc_difficulty(game)  // TODO: fix, levels update broke it
+		var game_dificulty = calc_difficulty(game)  // TODO: fix, levels update broke it
 
 		console.print("d");
 		console.pause();
