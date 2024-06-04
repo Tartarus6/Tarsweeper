@@ -1080,7 +1080,7 @@ function get_difficulty(all)
 	// result.mine_level = console.getnum(max_mine_level);
 	key = console.getkeys("Q", max_mine_level);
 	if(key == 'Q') {  // let user quit out of level selector
-		result.mine_level = -1;
+		result.size_level = -1;
 		return result;
 	}
 	result.mine_level = key;
