@@ -509,7 +509,7 @@ function show_log()
 		return;
 	}
 	console.attributes = WHITE;
-	console.print(format("Date      %-25s Lvl        Time    WxHxMines Rev  Result\r\n", "User", ""));
+	console.print(format("Date      %-25s Size-Mine  Time    WxHxMines Rev  Result\r\n", "User", ""));
 	
 	list.sort(compare_game);
 	
