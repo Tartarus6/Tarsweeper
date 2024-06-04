@@ -509,7 +509,7 @@ function show_log()
 		return;
 	}
 	console.attributes = WHITE;
-	console.print(format("Date      %-25s Lvl          Time    WxHxMines Rev  Result\r\n", "User", ""));
+	console.print(format("Date      %-25s Lvl               Time    WxHxMines Rev  Result\r\n", "User", ""));
 	
 	list.sort(compare_game);
 	
@@ -523,11 +523,11 @@ function show_log()
 
 		var game_dificulty = calc_difficulty(game)
 
-		console.print(format("%s  %-25s %1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
+		console.print(format("%s  %-25s %1.2f-%1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
 			,game.name
 			,game_dificulty.size_level
-			// ,game_dificulty.mine_level
+			,game_dificulty.mine_level
 			,secondstr(calc_time(game), true)
 			,game.width
 			,game.height
