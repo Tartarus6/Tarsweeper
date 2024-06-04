@@ -490,7 +490,7 @@ function compare_game(g1, g2)
 function show_log()
 {
 	console.clear(); 
-	console.attributes = YELLOW|BG_CYAN|BG_HIGH;
+	console.attributes = YELLOW|BG_CYAN;
 	console_center(" " + title + " Log ");
 	console.attributes = LIGHTGRAY;
 	
