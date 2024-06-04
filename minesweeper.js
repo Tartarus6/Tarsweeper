@@ -1409,9 +1409,10 @@ function play()
 						break;
 				}
 				var new_difficulty = get_difficulty();
-				if(new_difficulty.size_level > 0 && new_difficulty.mine_level > 0)
+				if(new_difficulty.size_level > 0 && new_difficulty.mine_level > 0) {
 					full_redraw = true;
 					difficulty = init_game(new_difficulty);
+				}
 				break;
 			}
 			case 'E':
