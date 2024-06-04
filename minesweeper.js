@@ -777,6 +777,7 @@ function draw_board(full)
 		else if(new_best)
 			blurb = "Personal Best Time";
 		console_center(blurb + " " + secondstr(calc_time(game), true).trim());
+		console_center("");
 	} else if(gameover && !view_details) {
 		console.attributes = CYAN|HIGH|BLINK;
 		console_center((calc_time(game) < options.timelimit * 60
