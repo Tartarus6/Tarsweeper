@@ -1045,12 +1045,8 @@ function get_difficulty(all)
 		}
 		else if(key == 'Q') {  // let user quit out of level selector
 			result.size_level = -1;
-			console.print("1");
-			console.pause();
 			return result;
 		}
-		console.print("2");
-		console.pause();
 		result.size_level = key;
 
 		// ask user for mine level
@@ -1062,12 +1058,8 @@ function get_difficulty(all)
 		}
 		else if(key == 'Q') {  // let user quit out of level selector
 			result.size_level = -1;
-			console.print("3");
-			console.pause();
 			return result;
 		}
-		console.print("4");
-		console.pause();
 		result.mine_level = key;
 
 		return result;
@@ -1075,11 +1067,23 @@ function get_difficulty(all)
 
 	console.right((console.screen_columns - 24) / 2);
 	console.print(format("Size Level (%s): ", size_lvls));
-	result.size_level = console.getnum(max_size_level);
+	// result.size_level = console.getnum(max_size_level);
+	key = console.getkeys("Q", max_size_level);
+	if(key == 'Q') {  // let user quit out of level selector
+		result.size_level = -1;
+		return result;
+	}
+	result.size_level = key;
 	
 	console.right((console.screen_columns - 24) / 2);
 	console.print(format("Mine Level (%s): ", mine_lvls));
-	result.mine_level = console.getnum(max_mine_level);
+	// result.mine_level = console.getnum(max_mine_level);
+	key = console.getkeys("Q", max_mine_level);
+	if(key == 'Q') {  // let user quit out of level selector
+		result.mine_level = -1;
+		return result;
+	}
+	result.mine_level = key;
 	
 	return result;
 }
