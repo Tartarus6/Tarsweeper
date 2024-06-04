@@ -537,9 +537,13 @@ function show_log()
 			console.attributes = LIGHTCYAN;
 		else
 			console.attributes = BG_CYAN;
-		game_dificulty = calc_difficulty(game)  // TODO: fix, levels update broke it
 
 		console.print("c");
+		console.pause();
+
+		game_dificulty = calc_difficulty(game)  // TODO: fix, levels update broke it
+
+		console.print("d");
 		console.pause();
 
 		console.print(format("%s  %-25s %1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
