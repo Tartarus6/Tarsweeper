@@ -1060,8 +1060,9 @@ function get_difficulty(all)
 		else if(key == 'Q') {  // let user quit out of level selector
 			result.size_level = -1;
 			return result;
+		} else {
+			result.size_level = key;
 		}
-		result.size_level = key;
 
 		// ask user for mine level
 		console.right((console.screen_columns - 20) / 2);
@@ -1073,8 +1074,9 @@ function get_difficulty(all)
 		else if(key == 'Q') {  // let user quit out of level selector
 			result.size_level = -1;
 			return result;
+		} else {
+			result.mine_level = key;
 		}
-		result.mine_level = key;
 
 		return result;
 	}
@@ -1447,7 +1449,7 @@ function play()
 				console.home();
 				console.down(top + 1);
 				var level = get_difficulty(true);
-				if(level.size_level >= 0) {
+				if(level.size_level >= 0 && level.mine_level >= 0) {
 					full_redraw = true;
 					console.line_counter = 0;
 					show_winners(level);
