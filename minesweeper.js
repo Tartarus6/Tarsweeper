@@ -409,7 +409,7 @@ function get_winners(level)
 	if(level) {
 		list = list.filter(function (obj) {
 			var difficulty = calc_difficulty(obj);
-			return (difficulty.size_level == Math.round(level.size_level) && difficulty.mine_level == Math.round(level.mine_level));
+			return ((difficulty.size_level == Math.round(level.size_level) || level.size_level == 0) && (difficulty.mine_level == Math.round(level.mine_level) || level.mine_level == 0));
 		});
 	}
 	
