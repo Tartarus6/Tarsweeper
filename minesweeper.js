@@ -489,7 +489,7 @@ function compare_game(g1, g2)
 
 function show_log()
 {
-	console.clear();
+	console.clear(); 
 	console.attributes = YELLOW|BG_CYAN|BG_HIGH;
 	console_center(" " + title + " Log ");
 	console.attributes = LIGHTGRAY;
@@ -509,7 +509,7 @@ function show_log()
 		return;
 	}
 	console.attributes = WHITE;
-	console.print(format("Date      %-25s Size-Mine  Time    WxHxMines Rev  Result\r\n", "User", ""));
+	console.print(format("Date      %-25s Size-Mine  Time      WxHxMines Rev  Result\r\n", "User", ""));
 	
 	list.sort(compare_game);
 	
