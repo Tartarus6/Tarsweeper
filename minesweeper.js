@@ -1376,6 +1376,7 @@ function play()
 				console.home();
 				console.down(top + 1);
 				if(game.start && !gameover) {
+					full_redraw = true;
 					console.cleartoeol();
 					draw_border();
 					console.attributes = LIGHTCYAN;
@@ -1387,7 +1388,6 @@ function play()
 					if(key != 'Y')
 						break;
 				}
-				full_redraw = true;
 				init_game(difficulty);
 				break;
 			}
