@@ -335,9 +335,9 @@ function list_contains(list, obj)
 // TODO: i do not understand this function. do that
 function get_winners(level)
 {
-	console.log(level.size_level);
+	console.print(level.size_level);
 	console.pause();
-	console.log(level.mine_level);
+	console.print(level.mine_level);
 	console.pause();
 
 
