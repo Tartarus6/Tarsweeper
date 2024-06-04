@@ -1047,6 +1047,7 @@ function get_difficulty(all)
 			result.size_level = -1;
 			console.print("quit");
 			console.pause();
+			return result;
 		}
 		result.size_level = key;
 
@@ -1061,6 +1062,7 @@ function get_difficulty(all)
 			result.size_level = -1;
 			console.print("quit");
 			console.pause();
+			return result;
 		}
 		result.mine_level = key;
 
