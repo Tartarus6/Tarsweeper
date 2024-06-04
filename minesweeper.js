@@ -816,7 +816,7 @@ function draw_board(full)
 		} else if (!gameover && game.start) {
 			cmds += "  [\x01hD\x01n]Dig  [\x01hF\x01n]Flag";
 		} else {
-			cmds += "  [\x01hN\x01n]New  [\x01hD\x01n]Show";
+			cmds = "[\x01hR\x01n]Retry  [\x01hN\x01n]New  [\x01hD\x01n]Show";
 		}
 		
 		cmds_shown = cmds;
@@ -1356,6 +1356,26 @@ function play()
 					full_redraw = gameover;
 				}
 				break;
+			case 'R':
+			{
+				full_redraw = false;
+				console.home();
+				console.down(top + 1);
+				if(game.start && !gameover) {
+					console.cleartoeol();
+					draw_border();
+					console.attributes = LIGHTCYAN;
+					console.right((console.screen_columns - 15) / 2);
+					mouse_enable(false);
+					console.clear_hotspots();
+					console.print("New Game (\x01~Y/\x01~N) ?");
+					var key = console.getkey(K_UPPER);
+					if(key != 'Y')
+						break;
+				}
+				init_game(difficulty);
+				break;
+			}
 			case 'N':
 			{
 				full_redraw = false;
