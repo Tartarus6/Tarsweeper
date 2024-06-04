@@ -1317,8 +1317,6 @@ function play()
 			case ' ':
 				if(gameover) {
 					if(!gamewon) {
-						console.print("showing");
-						console.pause();
 						view_details = !view_details;
 						full_redraw = true;
 					}
