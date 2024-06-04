@@ -1045,6 +1045,7 @@ function get_difficulty(all)
 		}
 		else if(key == 'Q') {  // let user quit out of level selector
 			result.size_level = -1;
+			console.print("quit");
 		}
 		result.size_level = key;
 
@@ -1057,6 +1058,7 @@ function get_difficulty(all)
 		}
 		else if(key == 'Q') {  // let user quit out of level selector
 			result.size_level = -1;
+			console.print("quit");
 		}
 		result.mine_level = key;
 
