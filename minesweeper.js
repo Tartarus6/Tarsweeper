@@ -424,7 +424,7 @@ function show_winners(level)
 {
 	console.clear();
 	console.aborted = false;
-	console.attributes = YELLOW|BG_CYAN|BG_HIGH;
+	console.attributes = YELLOW|BG_CYAN;
 	var str = " " + title + " Top " + options.winners;
 	if(level.size_level)
 		str += " Level " + level.size_level + "-" + level.mine_level;
@@ -542,7 +542,7 @@ function show_log()
 function show_best()
 {
 	console.clear(LIGHTGRAY);
-	console.attributes = YELLOW|BG_CYAN|BG_HIGH;
+	console.attributes = YELLOW|BG_CYAN;
 	console_center(" Your " + title + " Personal Best Wins ");
 	console.attributes = LIGHTGRAY;
 	
@@ -711,7 +711,7 @@ function totalflags()
 
 function show_title()
 {
-	console.attributes = BLACK|BG_CYAN|BG_HIGH;
+	console.attributes = YELLOW|BG_CYAN;
 	console_center(title + " " + REVISION);
 } 
 
