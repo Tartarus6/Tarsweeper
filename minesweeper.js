@@ -101,6 +101,10 @@ difficulty = {
 // STUPID AND BAD CODE OVER
 
 
+// updating old games into new format
+// TODO
+
+
 var game = {};
 var board = [];
 var selected = {x:0, y:0};
