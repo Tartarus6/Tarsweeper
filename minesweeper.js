@@ -11,8 +11,6 @@
 "use strict";
 
 // TODO: make something that'll automatically roll over old scores into the new level system
-// TODO: fix it always saying "personal best time" even for bad times
-// TODO: fix code that for some reason resets leaderboard count in leaderboard function (commented out code)
 
 /*
 {"rev":"0.6","height":10,"width":10,"mines":10,"start":1715695309.111,"end":1715695322.782,"name":"Tar"}
@@ -217,7 +215,7 @@ function isgamewon()
 			game.md5 = undefined;
 		}
 
-		var level = calc_difficulty(game);  // TODO: fix, levels update broke it
+		var level = calc_difficulty(game);
 
 		var ceil_level = {};
 		ceil_level["size_level"] = Math.ceil(level.size_level);
@@ -233,9 +231,6 @@ function isgamewon()
 		}
 		if(!best[level.size_level][level.mine_level] || calc_time(game) < calc_time(best[level.size_level][level.mine_level])) {
 			new_best = true;
-			// delete best[level.size_level][level.mine_level];
-			
-			//TODO treat these as keys not indices even if int passed.
 			best[level.size_level][level.mine_level] = game;
 		}
 		
@@ -252,7 +247,6 @@ function isgamewon()
 		show_image(winner_image, true, /* delay: */0);
 		var start = Date.now();
 
-		// TODO: fix the below, refers wrongly to levels
 		var winners = get_winners(level);
 
 		for(var i = 0; i < options.winners; i++) {
@@ -410,12 +404,11 @@ function get_winners(level)
 		}
 	}
 
-	// TODO: understand how the code below works, it should just return the games matching the given difficulty
 	
 	// filter for level if given
 	if(level) {
 		list = list.filter(function (obj) {
-			var difficulty = calc_difficulty(obj);  // TODO: fix, levels update broke it
+			var difficulty = calc_difficulty(obj);
 			return (difficulty.size_level == Math.round(level.size_level) && difficulty.mine_level == Math.round(level.mine_level));
 		});
 	}
@@ -528,7 +521,7 @@ function show_log()
 		else
 			console.attributes = BG_CYAN;
 
-		var game_dificulty = calc_difficulty(game)  // TODO: fix, levels update broke it
+		var game_dificulty = calc_difficulty(game)
 
 		console.print(format("%s  %-25s %1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
