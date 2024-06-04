@@ -65,7 +65,7 @@ It's a game of quick deduction, pattern-recognition, and a little bit o' luck!
   have the option of automatically uncovering all blocks surrounding a
   previously uncovered block if the number of surrounding mines matches the
   number of flagged blocks. This time-saving operation is called a cChordn and is
-  invoked with the dedicated 'hCn' key, or by simply digging on. Note: if you have an incorrectly
+  invoked by simply digging on a tile with the same number of flags around it as its number. Note: if you have an incorrectly
   placed flag in the area, a Chord operation could detonate a mine!
 
 

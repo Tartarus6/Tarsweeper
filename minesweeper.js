@@ -35,6 +35,7 @@ const size_level_multiplier = 5;  // defines the number of cells added to the he
 const min_mine_density = 0.1;
 const mine_density_multiplier = 0.1;
 const char_flag = '\x9f';
+const flag_colors = ['\x011\x01k', '\x013\x01k', '\x016\x01k']
 const char_badflag = '!';
 // const char_unsure = '?';
 const char_empty = '\xFA'; 
@@ -601,7 +602,7 @@ function cell_val(x, y)
 	if(board[y][x].flagged) {
 		if(gameover && !board[y][x].mine)
 			return char_badflag;
-		return '\x01k\x011' + char_flag;
+		return flag_colors[board[y][x].flagged-1] + char_flag;
 	}
 	if((view_details || !gameover) && board[y][x].covered)
 		return char_covered;
@@ -1330,6 +1331,7 @@ function play()
 				break;
 			case 'D':	// Dig (or Details)
 			case ' ':
+			case 'W':
 				if(gameover) {
 					if(!gamewon) {
 						view_details = !view_details;
@@ -1349,21 +1351,36 @@ function play()
 					full_redraw = gameover;
 				}
 				break;
-			case 'C':	// Chord
-				if(!gameover && can_chord(selected.x, selected.y)) {
-					if(chord(selected.x, selected.y))
-						lostgame("mine");
-					else 
-						isgamewon();
+			case 'F':	// Flag 1
+				if(!gameover && board[selected.y][selected.x].covered) {
+					if(board[selected.y][selected.x].flagged == 1) {
+						board[selected.y][selected.x].flagged = 0;  // renove flag if already flagged
+					} else {
+						board[selected.y][selected.x].flagged = 1;
+					}
+					if(!game.start)
+						start_game();
 					full_redraw = gameover;
 				}
 				break;
-			case 'F':	// Flag
+			case 'C':	// Flag 2
 				if(!gameover && board[selected.y][selected.x].covered) {
-					if(board[selected.y][selected.x].flagged) {
-						board[selected.y][selected.x].flagged = false;
+					if(board[selected.y][selected.x].flagged == 2) {
+						board[selected.y][selected.x].flagged = 0;  // renove flag if already flagged
 					} else {
-						board[selected.y][selected.x].flagged = true;
+						board[selected.y][selected.x].flagged = 2;
+					}
+					if(!game.start)
+						start_game();
+					full_redraw = gameover;
+				}
+				break;
+			case 'V':	// Flag 3
+				if(!gameover && board[selected.y][selected.x].covered) {
+					if(board[selected.y][selected.x].flagged == 3) {
+						board[selected.y][selected.x].flagged = 0;  // renove flag if already flagged
+					} else {
+						board[selected.y][selected.x].flagged = 3;
 					}
 					if(!game.start)
 						start_game();
@@ -1422,20 +1439,6 @@ function play()
 				if(!gameover && !game.start)
 				{
 					easy_open();
-				}
-				break;
-			}
-			case 'W':
-			{
-				if(!gameover && board[selected.y][selected.x].covered) {
-					if(board[selected.y][selected.x].flagged) {
-						board[selected.y][selected.x].flagged = false;
-					} else {
-						board[selected.y][selected.x].flagged = true;
-					}
-					if(!game.start)
-						start_game();
-					full_redraw = gameover;
 				}
 				break;
 			}
