@@ -1412,6 +1412,8 @@ function play()
 				if(new_difficulty.size_level > 0 && new_difficulty.mine_level > 0) {
 					full_redraw = true;
 					difficulty = init_game(new_difficulty);
+				} else if(new_difficulty.size_level == 0 || new_difficulty.mine_level == 0) {
+					full_redraw = true;
 				}
 				break;
 			}
