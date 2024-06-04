@@ -18,7 +18,7 @@
 
 const title = "Tarsweeper";
 const ini_section = "minesweeper";
-const REVISION = "$Revision: 0.6 $".split(' ')[1];
+const REVISION = "$Revision: 0.7 $".split(' ')[1];
 const author = "Digital Man";
 const header_height = 4;
 const winners_list = js.exec_dir + "winners.jsonl";
