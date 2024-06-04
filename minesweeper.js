@@ -426,8 +426,20 @@ function show_winners(level)
 	console.aborted = false;
 	console.attributes = YELLOW|BG_CYAN;
 	var str = " " + title + " Top " + options.winners;
-	if(level.size_level)
-		str += " Level " + level.size_level + "-" + level.mine_level;
+
+	var size = "";
+	var mine = "";
+	if(level.size_level) {
+		size = level.size_level;
+	} else {
+		size = " all";
+	}
+	if(level.mine_level) {
+		mine = level.size_level;
+	} else {
+		mine = "all ";
+	}
+	str += " Level " + size + "-" + mine;
 	str += " Winners ";
 	console_center(str);
 	console.attributes = LIGHTGRAY;
@@ -1395,7 +1407,7 @@ function play()
 						break;
 				}
 				var new_difficulty = get_difficulty();
-				if(new_difficulty.size_level > 0)
+				if(new_difficulty.size_level > 0 && new_difficulty.mine_level > 0)
 					full_redraw = true;
 					difficulty = init_game(new_difficulty);
 				break;
