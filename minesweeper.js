@@ -1045,10 +1045,12 @@ function get_difficulty(all)
 		}
 		else if(key == 'Q') {  // let user quit out of level selector
 			result.size_level = -1;
-			console.print("quit");
+			console.print("1");
 			console.pause();
 			return result;
 		}
+		console.print("2");
+		console.pause();
 		result.size_level = key;
 
 		// ask user for mine level
@@ -1060,10 +1062,12 @@ function get_difficulty(all)
 		}
 		else if(key == 'Q') {  // let user quit out of level selector
 			result.size_level = -1;
-			console.print("quit");
+			console.print("3");
 			console.pause();
 			return result;
 		}
+		console.print("4");
+		console.pause();
 		result.mine_level = key;
 
 		return result;
