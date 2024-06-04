@@ -716,7 +716,7 @@ function totalflags()
 
 function show_title()
 {
-	console.attributes = YELLOW|BG_CYAN|BG_HIGH;
+	console.attributes = BLACK|BG_CYAN|BG_HIGH;
 	console_center(title + " " + REVISION);
 } 
 
@@ -775,7 +775,7 @@ function draw_board(full)
 	} else
 		console.down(top + 1);
 	if(gamewon) {
-		console.attributes = BLACK|BLINK;
+		console.attributes = YELLOW|BLINK;
 		var blurb = "Winner! Cleared in";
 		if(win_rank)
 			blurb = "Rank " + win_rank + " Winner in";
