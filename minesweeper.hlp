@@ -7,18 +7,18 @@
 @CENTER@hYou're in a mine field!n
 
 The object of the game is to uncover all the safe areas (blocks) in the mine
-field without uncovering (detonating) any mines (rhën), within the allowed time!
+field without uncovering (detonating) any mines (rï¿½n), within the allowed time!
 It's a game of quick deduction, pattern-recognition, and a little bit o' luck!
 
-hControlsn:
+hMain Controlsn:
 
-ù hcMoven the block selector h(your cursor, the highlighted tile)n around the game board using the arrow keys,
+- hcMoven the block selector h(your cursor, the highlighted tile)n around the game board using the arrow keys,
   home/end/page-up/down or the numeric keypad (i.e. for diagonal movement).
 
-ù hcEasy startn automatically digs an empty cell to begin the game with less guesswork.
-  You can do this by pressing the 'hEn' key before digging anything at the begining of a game.
+- hcEasy startn automatically digs an empty cell to begin the game with less guesswork.
+  You can do this by pressing the hg[E]:n key before digging anything at the begining of a game.
   
-ù hcDign a block (reveal its contents) using the 'hDn' key or the hspace-barn.
+- hcDign a block (reveal its contents) using the hg[D]n key or the hg[space-bar]n.
   If you dig-up/detonate a mine (rhi*n), sorry, game over: you lose, try again!
   
   The first block you uncover is guaranteed to be empty (safe).
@@ -29,30 +29,44 @@ It's a game of quick deduction, pattern-recognition, and a little bit o' luck!
   These digits are your clue where the next mine or empty block may be located.
   When all empty blocks are uncovered, the game is won!
 
-ù hcFlagn a covered block as having a suspected mine with the 'hFn' key.
-  You can also remove a flag ('rhŸn') by pressing 'hFn' again.
+- hcFlagn (rï¿½n) a covered block as having a suspected mine with the hg[F]:n key.
+  You can also remove a flag by pressing hg[F]:n again.
   If you lose, incorrectly-flagged safe blocks are indicated with a 'rh!n'.
   
-ù hcDisplayn a list of top-ranked previous game-winners with the 'hLn' key.
-  You can view a log of all clocaln wins and losses with the 'hLn' key.
+- hcThe leaderboardn, a list of top-ranked previous game-winners, can be shown with the hg[L]:n key.
 
-ù hcStartn a new game with the the 'hNn' key. A new difficulty level may be chosen.
+- hcStartn a new game with the the hg[N]:n key. A new difficulty level may be chosen.
   Larger user terminals can support larger game boards for greater challenges!
 
-ù hcQuitn the game with the 'hQn' key.
+- hcQuitn the game with the hg[Q]:n key.
 
-ù hcRedrawn the game board with the hCtrl-Rn key combination.
+- hcRedrawn the game board with the hg[Ctrl-R]:n key combination.
 
-ù hcTogglen the affected-area highlight feature with the hTABn key.
-  Cycle through the available block-selector styles using hCtrl-Sn.
+- hcTogglen the affected-area highlight feature with the hg[Tab]:n key.
+
+hList of All Controls:n
+- hg[?]:n Show this help menu
+- hg[Q]:n Universal quit key (should work in every menu)
+- hg[E]:n Easy start (auto-opens an empty cell)
+- hg[D]:n Dig key
+- hg[Space]:n Alternate dig key
+- hg[F]:n Flag key
+- hg[W]:n Alternate flag key
+- hg[N]:n Begin 'new game' dialogue
+- hg[R]:n Retry current difficulty (can run any time)
+- hg[Tab]:n Toggle affected-area highlight
+- hg[L]:n Shows the leaderboard for the chosen level (sorted by speed)
+- hg[B]:n Shows personal best games for each level
+- hg[T]:n Shows overall top 20 games
+- hg[H]:n Shows full game history (use hg[Q]:n to quit the dialogue at any point)
 
 hChording:n  
   Once you have flagged one or more blocks as likely containing a mine, you may
   have the option of automatically uncovering all blocks surrounding a
   previously uncovered block if the number of surrounding mines matches the
   number of flagged blocks. This time-saving operation is called a cChordn and is
-  invoked with the dedicated 'hCn' key, or by simply digging on. Note: if you have an incorrectly
-  placed flag ('rhŸn') in the area, a Chord operation could detonate a mine!
+  invoked by simply digging on a tile with the same number of flags around it as its number. Note: if you have an incorrectly
+  placed flag in the area, a Chord operation could detonate a mine!
 
 
 hDifficulty Leveln:
@@ -80,14 +94,14 @@ accordingly.
 If some of the navigation keys (e.g. arrow keys, home, end) do not work for
 your terminal, you can try using these alternatives:
 
-  ù Up Arrow: Ctrl-^
-  ù Down Arrow: Ctrl-J
-  ù Left Arrow: Ctrl-]
-  ù Right Arrow: Ctrl-F
-  ù Home: Ctrl-B
-  ù End: Ctrl-E
-  ù Page-Up: Ctrl-P
-  ù Page-Down: Ctrl-N
+  - Up Arrow: Ctrl-^
+  - Down Arrow: Ctrl-J
+  - Left Arrow: Ctrl-]
+  - Right Arrow: Ctrl-F
+  - Home: Ctrl-B
+  - End: Ctrl-E
+  - Page-Up: Ctrl-P
+  - Page-Down: Ctrl-N
   
 ... or use the numeric keypad.
 
