@@ -845,14 +845,18 @@ function draw_board(full)
 
 	// printing top of board border
 	if(full) {
-		console.print('\xDB');
-			for(var x = 0; x < (game.width * cell_width) + !(cell_width&1) - 1; x++)
-			{
-				console.print('\xDB');
-			}
-			console.print('\xDB');
-			console.down();
-			console.creturn();
+		height++;
+		console.down();
+		console.creturn();
+		console.right(margin - 1);
+		console.attributes = CYAN;
+		console.print('\xDF');
+		for(var x = 0; x < (game.width * cell_width) + !(cell_width&1) - 1; x++)
+		{
+			console.print('\xDF');
+		}
+		console.print('\xDF');
+		console.attributes = LIGHTGRAY;
 	} else {
 		console.down();
 	}
