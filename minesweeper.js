@@ -798,6 +798,7 @@ function draw_board(full)
 	} else if(gameover && !view_details) {
 		console.attributes = CYAN|HIGH|BLINK;
 		console_center("Game Over");
+		console_center("");
 	} else {
 		var elapsed = 0;
 		if(game.start) {
