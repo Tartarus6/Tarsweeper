@@ -306,10 +306,10 @@ function compare_won_game(g1, g2)
 	diff.size_diff = calc_difficulty(g2).size_level - calc_difficulty(g1).size_level;
 	diff.mine_diff = calc_difficulty(g2).mine_level - calc_difficulty(g1).mine_level;
 
-	if (diff.size_diff) {
-		return diff.size_diff;
-	} else if (diff.mine_diff) {
+	if (diff.mine_diff) {
 		return diff.mine_diff;
+	} else if (diff.size_diff) {
+		return diff.size_diff;
 	} else {
 		return calc_time(g1) - calc_time(g2);
 	}
@@ -466,7 +466,7 @@ function show_winners(level)
 	for(var i = 0; i < list.length && displayed < options.winners && !console.aborted; i++) {
 		game = list[i];
 		difficulty = calc_difficulty(game);
-		// TODO: reimplement the code below
+		// TODO: reimplement the code below maybe. idk what it does
 		/*
 		if(Math.ceil(difficulty) != Math.ceil(last_level)) {
 			last_level = difficulty;
