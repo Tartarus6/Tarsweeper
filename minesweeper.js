@@ -56,10 +56,10 @@ if(BG_HIGH === undefined)
 var options=load({}, "modopts.js", ini_section);
 if(!options)
 	options = {};
-if(!options.timelimit)
-	options.timelimit = 60;	// minutes
-if(!options.timewarn)
-	options.timewarn = 5;
+// if(!options.timelimit)
+// 	options.timelimit = 60;	// minutes
+// if(!options.timewarn)
+// 	options.timewarn = 5;
 if(!options.winners)
 	options.winners = 20;
 if(!options.selector)
@@ -797,8 +797,6 @@ function draw_board(full)
 		console_center("");
 	} else if(gameover && !view_details) {
 		console.attributes = CYAN|HIGH|BLINK;
-		console_center((calc_time(game) < options.timelimit * 60
-			? "" : "Time-out: ") + "Game Over");
 	} else {
 		var elapsed = 0;
 		if(game.start) {
@@ -807,11 +805,9 @@ function draw_board(full)
 			else
 				elapsed = (Date.now() / 1000) - game.start;
 		}
-		var timeleft = Math.max(0, (options.timelimit * 60) - elapsed);
 		console.attributes = LIGHTCYAN;
-		console_center(format("%2d Mines  %s%s ",
+		console_center(format("%2d Mines  %s ",
 			game.mines - totalflags(),
-			game.start && !gameover && (timeleft / 60) <= options.timewarn ? "\x01r\x01h\x01i" : "",
 			secondstr(elapsed)
 			));
 		
@@ -1231,11 +1227,6 @@ function play()
 
 	// main loop
 	while(bbs.online) {
-		if(!gameover && game.start
-			&& Date.now() - (game.start * 1000) >= options.timelimit * 60 * 1000) {
-			lostgame("timeout");
-			draw_board(true);
-		}
 		var mk = mouse_getkey(K_NONE, 1000, true);
 		var key = mk.key;
 		if (mk.mouse !== null) {
