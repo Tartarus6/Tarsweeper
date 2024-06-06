@@ -1425,6 +1425,8 @@ function play()
 					var key = console.getkey(K_UPPER);
 					if(key != 'Y')
 						break;
+				} else {
+					break;
 				}
 				full_redraw = true;
 				init_game(difficulty);
