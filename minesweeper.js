@@ -56,10 +56,10 @@ if(BG_HIGH === undefined)
 var options=load({}, "modopts.js", ini_section);
 if(!options)
 	options = {};
-// if(!options.timelimit)
-// 	options.timelimit = 60;	// minutes
-// if(!options.timewarn)
-// 	options.timewarn = 5;
+if(!options.timelimit)
+	options.timelimit = 60;	// minutes
+if(!options.timewarn)
+	options.timewarn = 5;
 if(!options.winners)
 	options.winners = 20;
 if(!options.selector)
@@ -797,6 +797,7 @@ function draw_board(full)
 		console_center("");
 	} else if(gameover && !view_details) {
 		console.attributes = CYAN|HIGH|BLINK;
+		console_center("Game Over");
 	} else {
 		var elapsed = 0;
 		if(game.start) {
