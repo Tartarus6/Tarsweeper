@@ -792,12 +792,12 @@ function draw_board(full)
 			blurb = "Rank " + win_rank + " Winner in";
 		else if(new_best)
 			blurb = "Personal Best Time";
-		console_center(blurb + " " + secondstr(calc_time(game), true).trim());
-		console_center("");
+		console_center("\x01n" + blurb + " " + secondstr(calc_time(game), true).trim());
+		console.down();
 	} else if(gameover && !view_details) {
 		console.attributes = CYAN|HIGH|BLINK;
-		console_center("Game Over");
-		console_center("");
+		console_center("\x01nGame Over");
+		console.down();
 	} else {
 		var elapsed = 0;
 		if(game.start) {
@@ -807,17 +807,17 @@ function draw_board(full)
 				elapsed = (Date.now() / 1000) - game.start;
 		}
 		console.attributes = LIGHTCYAN;
-		console_center(format("%2d Mines  %s ",
+		console_center(format("\x01n%2d Mines  %s ",
 			game.mines - totalflags(),
 			secondstr(elapsed)
 			));
 		
-		console_center(format("Lvl %1.2f-%1.2f",
+		console_center(format("\x01nLvl %1.2f-%1.2f",
 			calc_difficulty(game).size_level,
 			calc_difficulty(game).mine_level
 		))
 	}
-	var cmds = "";
+	var cmds = "\x01n";
 	if(full || cmds !== cmds_shown) {
 		console.clear_hotspots();
 		
