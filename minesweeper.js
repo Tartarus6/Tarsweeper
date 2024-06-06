@@ -1096,7 +1096,7 @@ function get_difficulty(all)
 		return result;
 	}
 
-	console.center(format("Size Level (%s): ", size_lvls));
+	console.center(format("\x01hSize Level (%s): ", size_lvls));
 	// result.size_level = console.getnum(max_size_level);
 	key = console.getkeys("Q", max_size_level);
 	if(key == 'Q') {  // let user quit out of level selector
@@ -1105,7 +1105,8 @@ function get_difficulty(all)
 	}
 	result.size_level = key;
 	
-	console.center(format("Mine Level (%s): ", mine_lvls));
+	console.up();  // kind of a hack. for some reason there was a gap between the two prompts
+	console.center(format("\x01hMine Level (%s): ", mine_lvls));
 	// result.mine_level = console.getnum(max_mine_level);
 	key = console.getkeys("Q", max_mine_level);
 	if(key == 'Q') {  // let user quit out of level selector
