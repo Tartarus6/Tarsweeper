@@ -756,6 +756,7 @@ function draw_border()
 // A non-destructive console.center() replacement
 function console_center(text)
 {
+	console.cleartoeol();
 	console.right((console.screen_columns - console.strlen(text)) / 2);
 	console.print(text);
 	console.crlf();
@@ -798,8 +799,7 @@ function draw_board(full)
 	} else if(gameover && !view_details) {
 		console.attributes = CYAN|HIGH|BLINK;
 		console_center("Game Over");
-		var spaces = game.width * 2 * " ";
-		console_center(spaces);
+		console_center("");
 	} else {
 		var elapsed = 0;
 		if(game.start) {
