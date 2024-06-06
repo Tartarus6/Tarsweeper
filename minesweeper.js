@@ -756,7 +756,6 @@ function draw_border()
 // A non-destructive console.center() replacement
 function console_center(text)
 {
-	console.cleartoeol();
 	console.right((console.screen_columns - console.strlen(text)) / 2);
 	console.print(text);
 	console.crlf();
@@ -838,12 +837,13 @@ function draw_board(full)
 		cmds_shown = cmds;
 		
 		
-		console_center(cmds);
-		
+		console.center(cmds);
 	} else if(!console.term_supports(USER_ANSI)) {
 		console.creturn();
 		console.down(2);
 	}
+
+	// printing top of board border
 	if(full) {
 		console.print('\xDB');
 			for(var x = 0; x < (game.width * cell_width) + !(cell_width&1) - 1; x++)
@@ -851,8 +851,9 @@ function draw_board(full)
 				console.print('\xDB');
 			}
 			console.print('\xDB');
+			console.down()
 	} else {
-		console.print("");
+		console.down();
 	}
 	console.pause();
 	var redraw_selection = false;
