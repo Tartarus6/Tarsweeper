@@ -788,14 +788,17 @@ function draw_board(full)
 	if(gamewon) {
 		console.attributes = YELLOW|BLINK;
 		var blurb = "Winner! Cleared in";
-		if(win_rank)
+		if(win_rank) {
 			blurb = "Rank " + win_rank + " Winner in";
-		else if(new_best)
+		} else if(new_best) {
 			blurb = "Personal Best Time";
+		}
+		console.clearline();
 		console.center("\x01n" + blurb + " " + secondstr(calc_time(game), true).trim());
 		console.down();
 	} else if(gameover && !view_details) {
 		console.attributes = CYAN|HIGH|BLINK;
+		console.clearline();
 		console.center("\x01nGame Over");
 		console.down();
 	} else {
@@ -807,15 +810,16 @@ function draw_board(full)
 				elapsed = (Date.now() / 1000) - game.start;
 		}
 		console.attributes = LIGHTCYAN;
+		console.clearline();
 		console.center(format("\x01n%2d Mines  %s ",
 			game.mines - totalflags(),
 			secondstr(elapsed)
-			));
-		
+		));
+		console.clearline();
 		console.center(format("\x01nLvl %1.2f-%1.2f",
 			calc_difficulty(game).size_level,
 			calc_difficulty(game).mine_level
-		))
+		));
 	}
 	var cmds = "\x01n";
 	if(full || cmds !== cmds_shown) {
@@ -833,7 +837,7 @@ function draw_board(full)
 		
 		cmds_shown = cmds;
 		
-		
+		console.clearline();
 		console.center(cmds);
 	} else if(!console.term_supports(USER_ANSI)) {
 		console.creturn();
