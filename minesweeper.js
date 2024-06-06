@@ -19,7 +19,7 @@
 const title = "Tarsweeper";
 const ini_section = "minesweeper";
 const REVISION = "$Revision: 0.7 $".split(' ')[1];
-const author = "Digital Man";
+const author = "Digital Man (also Tar)";
 const header_height = 4;
 const winners_list = js.exec_dir + "winners.jsonl";
 const losers_list = js.exec_dir + "losers.jsonl";
@@ -455,7 +455,7 @@ function show_winners(level)
 		return;
 	}
 	console.attributes = WHITE;
-	console.print(format("    %-25s%-15s Size-Mine   Time       WxHxMines   Date\r\n", "User", ""));
+	console.print(format("    %-15s%-15s Size-Mine   Time       WxHxMines   Date\r\n", "User", ""));
 
 	var count = 0;
 	var displayed = 0;
@@ -481,7 +481,7 @@ function show_winners(level)
 			console.attributes = LIGHTCYAN;
 		else
 			console.attributes = BG_CYAN;
-		console.print(format("%3u %-25.25s%-15.15s %1.2f-%1.2f  %s  %3ux%2ux%-3u   %s\x01>\r\n"
+		console.print(format("%3u %-15.25s%-15.15s %1.2f-%1.2f  %s  %3ux%2ux%-3u   %s\x01>\r\n"
 			,count + 1
 			,game.name
 			,game.net_addr ? ('@'+game.net_addr) : ''
@@ -526,7 +526,7 @@ function show_log()
 		return;
 	}
 	console.attributes = WHITE;
-	console.print(format("Date      %-25s Size-Mine  Time      WxHxMines Rev  Result\r\n", "User", ""));
+	console.print(format("Date      %-15s Size-Mine  Time      WxHxMines Rev  Result\r\n", "User", ""));
 	
 	list.sort(compare_game);
 	
@@ -540,7 +540,7 @@ function show_log()
 
 		var game_dificulty = calc_difficulty(game)
 
-		console.print(format("%s  %-25s %1.2f-%1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
+		console.print(format("%s  %-15s %1.2f-%1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
 			,game.name
 			,game_dificulty.size_level
