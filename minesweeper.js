@@ -783,7 +783,6 @@ function draw_board(full)
 		console.print(' ');
 		console.creturn();
 		show_title();
-		draw_border();
 	} else
 		console.down(top + 1);
 	if(gamewon) {
@@ -813,7 +812,6 @@ function draw_board(full)
 			secondstr(elapsed)
 			));
 		
-		draw_border();
 		console_center(format("Lvl %1.2f-%1.2f",
 			calc_difficulty(game).size_level,
 			calc_difficulty(game).mine_level
@@ -822,7 +820,6 @@ function draw_board(full)
 	var cmds = "";
 	if(full || cmds !== cmds_shown) {
 		console.clear_hotspots();
-		draw_border();
 		
 		cmds += "[\x01h?\x01n]Help";
 		if (!gameover && !game.start)
@@ -861,7 +858,6 @@ function draw_board(full)
 	} else {
 		console.down();
 	}
-	console.pause();
 	var redraw_selection = false;
 	for(var y = 0; y < game.height; y++) {
 		if(full)
