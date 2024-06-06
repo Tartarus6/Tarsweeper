@@ -1064,11 +1064,11 @@ function get_difficulty(all)
 		mine_lvls += "\x01~" + i;
 
 
+	// TODO: the 'all' case and the '!all' case are mostly the same, might be able to simplify the following code
 	// when asking for leaderboards
 	if(all) {
 		// ask user for size level
-		console.right((console.screen_columns - 20) / 2);
-		console.print(format("Size Level (%s) [\x01~All]: ", size_lvls));
+		console.center(format("Size Level (%s) [\x01~All]: ", size_lvls));
 		var key = console.getkeys("QA", max_size_level);
 		if(key == 'A') {
 			result.size_level = 0;
@@ -1081,8 +1081,7 @@ function get_difficulty(all)
 		}
 
 		// ask user for mine level
-		console.right((console.screen_columns - 20) / 2);
-		console.print(format("Mine Level (%s) [\x01~All]: ", mine_lvls));
+		console.center(format("Mine Level (%s) [\x01~All]: ", mine_lvls));
 		key = console.getkeys("QA", max_mine_level);
 		if(key == 'A') {
 			result.mine_level = 0;
@@ -1097,8 +1096,7 @@ function get_difficulty(all)
 		return result;
 	}
 
-	console.right((console.screen_columns - 24) / 2);
-	console.print(format("Size Level (%s): ", size_lvls));
+	console.center(format("Size Level (%s): ", size_lvls));
 	// result.size_level = console.getnum(max_size_level);
 	key = console.getkeys("Q", max_size_level);
 	if(key == 'Q') {  // let user quit out of level selector
@@ -1107,8 +1105,7 @@ function get_difficulty(all)
 	}
 	result.size_level = key;
 	
-	console.right((console.screen_columns - 24) / 2);
-	console.print(format("Mine Level (%s): ", mine_lvls));
+	console.center(format("Mine Level (%s): ", mine_lvls));
 	// result.mine_level = console.getnum(max_mine_level);
 	key = console.getkeys("Q", max_mine_level);
 	if(key == 'Q') {  // let user quit out of level selector
@@ -1414,7 +1411,7 @@ function play()
 					console.right((console.screen_columns - 15) / 2);
 					mouse_enable(false);
 					console.clear_hotspots();
-					console.print("Retry (\x01~Y/\x01~N) ?");
+					console.center("Retry (\x01~Y/\x01~N) ?");
 					var key = console.getkey(K_UPPER);
 					if(key != 'Y')
 						break;
@@ -1434,7 +1431,7 @@ function play()
 					console.right((console.screen_columns - 15) / 2);
 					mouse_enable(false);
 					console.clear_hotspots();
-					console.print("New Game (\x01~Y/\x01~N) ?");
+					console.center("New Game (\x01~Y/\x01~N) ?");
 					var key = console.getkey(K_UPPER);
 					if(key != 'Y')
 						break;
@@ -1531,7 +1528,7 @@ function play()
 					console.right((console.screen_columns - 16) / 2);
 					mouse_enable(false);
 					console.clear_hotspots();
-					console.print("Quit Game (\x01~Y/\x01~N) ?");
+					console.center("Quit Game (\x01~Y/\x01~N) ?");
 					var key = console.getkey(K_UPPER);
 					
 					if(key != 'Y')
