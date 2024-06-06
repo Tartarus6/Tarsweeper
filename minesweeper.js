@@ -844,6 +844,16 @@ function draw_board(full)
 		console.creturn();
 		console.down(2);
 	}
+	if(full) {
+		console.print('\xDB');
+			for(var x = 0; x < (game.width * cell_width) + !(cell_width&1) - 1; x++)
+			{
+				console.print('\xDB');
+			}
+			console.print('\xDB');
+	} else {
+		console.down();
+	}
 	var redraw_selection = false;
 	for(var y = 0; y < game.height; y++) {
 		if(full)
