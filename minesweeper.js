@@ -850,13 +850,14 @@ function draw_board(full)
 		console.creturn();
 		console.right(margin - 1);
 		console.attributes = CYAN;
-		console.print('\xDB');
+		console.print('\xDC');
 		for(var x = 0; x < (game.width * cell_width) + !(cell_width&1) - 1; x++)
 		{
-			console.print('\xDB');
+			console.print('\xDC');
 		}
-		console.print('\xDB');
+		console.print('\xDC');
 		console.attributes = LIGHTGRAY;
+		console.down();
 	} else {
 		console.down();
 	}
@@ -884,6 +885,7 @@ function draw_board(full)
 		console.line_counter = 0;
 	}
 	var height = game.height;
+	// drawing bottom border
 	if(full) {
 		if(game.height + header_height < console.screen_rows) {
 			height++;
