@@ -852,7 +852,7 @@ function draw_board(full)
 			}
 			console.print('\xDB');
 	} else {
-		console.down();
+		console.down(1);
 	}
 	console.pause();
 	var redraw_selection = false;
