@@ -847,8 +847,8 @@ function draw_board(full)
 	// printing top of board border
 	if(full) {
 		height++;
+		console.clearline();  // sort of hard fix to clear characters in the empty line between top menu and bottom menu (mostly smiley face from winning)
 		console.down();
-		console.creturn();
 		console.right(margin - 1);
 		console.attributes = CYAN;
 		console.print('\xDC');
