@@ -1071,7 +1071,7 @@ function get_difficulty(all)
 	if(all) {
 		// ask user for size level
 		console.clearline();
-		console_center(format("\x01hSize Level (%s) [\x01~All]: ", size_lvls), 0);
+		console_center(format("\x01hSize Level (%s) [\x01~All]: ", size_lvls));
 		var key = console.getkeys("QA", max_size_level);
 		if(key == 'A') {
 			result.size_level = 0;
@@ -1086,7 +1086,7 @@ function get_difficulty(all)
 		// ask user for mine level
 		console.down();  // kind of a hack. for some reason there was a gap between the two prompts
 		console.clearline();
-		console_center(format("\x01hMine Level (%s) [\x01~All]: ", mine_lvls), 0);
+		console_center(format("\x01hMine Level (%s) [\x01~All]: ", mine_lvls));
 		key = console.getkeys("QA", max_mine_level);
 		if(key == 'A') {
 			result.mine_level = 0;
@@ -1102,7 +1102,7 @@ function get_difficulty(all)
 	}
 
 	console.clearline();
-	console_center(format("\x01hSize Level (%s): ", size_lvls), 0);
+	console_center(format("\x01hSize Level (%s): ", size_lvls));
 	// result.size_level = console.getnum(max_size_level);
 	key = console.getkeys("Q", max_size_level);
 	if(key == 'Q') {  // let user quit out of level selector
@@ -1113,7 +1113,7 @@ function get_difficulty(all)
 	
 	console.down();  // kind of a hack. for some reason there was a gap between the two prompts
 	console.clearline();
-	console_center(format("\x01hMine Level (%s): ", mine_lvls), 0);
+	console_center(format("\x01hMine Level (%s): ", mine_lvls));
 	// result.mine_level = console.getnum(max_mine_level);
 	key = console.getkeys("Q", max_mine_level);
 	if(key == 'Q') {  // let user quit out of level selector
