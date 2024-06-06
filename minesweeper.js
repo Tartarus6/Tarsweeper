@@ -1415,7 +1415,7 @@ function play()
 				full_redraw = false;
 				console.home();
 				console.down(top + 1);
-				if(game.start && !gameover) {
+				if(game.start && !gameover) {  // if game started
 					console.cleartoeol();
 					console.attributes = LIGHTCYAN;
 					console.right((console.screen_columns - 15) / 2);
@@ -1425,9 +1425,11 @@ function play()
 					var key = console.getkey(K_UPPER);
 					if(key != 'Y')
 						break;
-				} else {
+				} else if(!gameover) {  // if new game not started (all cells covered)
 					break;
 				}
+
+				// if gameover
 				full_redraw = true;
 				init_game(difficulty);
 				break;
