@@ -758,7 +758,9 @@ function console_center(text, count=1)
 {
 	console.right((console.screen_columns - console.strlen(text)) / 2);
 	console.print(text);
-	console.crlf(count);
+	if(count) {
+		console.crlf(count);
+	}
 }
 
 // global state variable used by draw_board()
