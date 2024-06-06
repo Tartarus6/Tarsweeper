@@ -851,7 +851,8 @@ function draw_board(full)
 				console.print('\xDB');
 			}
 			console.print('\xDB');
-			console.down()
+			console.down();
+			console.creturn();
 	} else {
 		console.down();
 	}
