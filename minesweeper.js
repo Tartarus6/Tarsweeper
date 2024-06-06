@@ -754,12 +754,14 @@ function draw_border()
 }
 
 // A non-destructive console.center() replacement
-function console_center(text, count=1)
+function console_center(text, count)
 {
 	console.right((console.screen_columns - console.strlen(text)) / 2);
 	console.print(text);
 	if(count) {
 		console.crlf(count);
+	} else {
+		console.crlf();
 	}
 }
 
