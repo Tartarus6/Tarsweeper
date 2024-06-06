@@ -850,12 +850,12 @@ function draw_board(full)
 		console.creturn();
 		console.right(margin - 1);
 		console.attributes = CYAN;
-		console.print('\xDF');
+		console.print('\xDB');
 		for(var x = 0; x < (game.width * cell_width) + !(cell_width&1) - 1; x++)
 		{
-			console.print('\xDF');
+			console.print('\xDB');
 		}
-		console.print('\xDF');
+		console.print('\xDB');
 		console.attributes = LIGHTGRAY;
 	} else {
 		console.down();
