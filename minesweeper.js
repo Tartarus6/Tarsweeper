@@ -1084,6 +1084,7 @@ function get_difficulty(all)
 
 		// ask user for mine level
 		console.up();  // kind of a hack. for some reason there was a gap between the two prompts
+		console.clearline();
 		console.right((console.screen_columns - 20) / 2);
 		console.print(format("\x01hMine Level (%s) [\x01~All]: ", mine_lvls));
 		key = console.getkeys("QA", max_mine_level);
