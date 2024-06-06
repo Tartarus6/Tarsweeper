@@ -854,6 +854,7 @@ function draw_board(full)
 	} else {
 		console.down();
 	}
+	console.pause();
 	var redraw_selection = false;
 	for(var y = 0; y < game.height; y++) {
 		if(full)
