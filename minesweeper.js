@@ -1410,12 +1410,11 @@ function play()
 				console.down(top + 1);
 				if(game.start && !gameover) {
 					console.cleartoeol();
-					draw_border();
 					console.attributes = LIGHTCYAN;
 					console.right((console.screen_columns - 15) / 2);
 					mouse_enable(false);
 					console.clear_hotspots();
-					console.print("New Game (\x01~Y/\x01~N) ?");
+					console.print("Retry (\x01~Y/\x01~N) ?");
 					var key = console.getkey(K_UPPER);
 					if(key != 'Y')
 						break;
@@ -1431,7 +1430,6 @@ function play()
 				console.down(top + 1);
 				if(game.start && !gameover) {
 					console.cleartoeol();
-					draw_border();
 					console.attributes = LIGHTCYAN;
 					console.right((console.screen_columns - 15) / 2);
 					mouse_enable(false);
@@ -1529,7 +1527,6 @@ function play()
 					console.home();
 					console.down(top + 1);
 					console.cleartoeol();
-					draw_border();
 					console.attributes = LIGHTCYAN;
 					console.right((console.screen_columns - 16) / 2);
 					mouse_enable(false);
