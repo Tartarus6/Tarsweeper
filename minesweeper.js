@@ -1053,7 +1053,6 @@ function get_difficulty(all)
 
 	console.creturn();
 	console.cleartoeol();
-	draw_border();
 	console.attributes = WHITE;
 	console.clear_hotspots();
 	mouse_enable(false);
