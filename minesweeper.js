@@ -1635,8 +1635,9 @@ try {
 	var msg = file_getname(e.fileName) + 
 		" line " + e.lineNumber + 
 		": " + e.message;
-	if(js.global.console)
+	if(js.global.console) {
 		console.crlf();
+	}
 	alert(msg);
 	if(options.sub && user.alias != author) {
 		var msgbase = new MsgBase(options.sub);
