@@ -1646,8 +1646,9 @@ try {
 			subject: title
 		};
 		msg += tear_line;
-		if(!msgbase.save_msg(hdr, msg))
+		if(!msgbase.save_msg(hdr, msg)) {
 			alert("Error saving exception-message to: " + options.sub);
+		}
 		msgbase.close();
 	}
 }
