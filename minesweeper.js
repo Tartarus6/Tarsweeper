@@ -19,8 +19,8 @@
 const title = "Tarsweeper";
 const ini_section = "minesweeper";
 const REVISION = "$Revision: 0.7 $".split(' ')[1];
-const author = "Digital Man";
-const header_height = 4;
+const author = "Digital Man (also Tar)";
+const header_height = 6;
 const winners_list = js.exec_dir + "winners.jsonl";
 const losers_list = js.exec_dir + "losers.jsonl";
 const help_file = js.exec_dir + "minesweeper.hlp";
@@ -306,10 +306,10 @@ function compare_won_game(g1, g2)
 	diff.size_diff = calc_difficulty(g2).size_level - calc_difficulty(g1).size_level;
 	diff.mine_diff = calc_difficulty(g2).mine_level - calc_difficulty(g1).mine_level;
 
-	if (diff.size_diff) {
-		return diff.size_diff;
-	} else if (diff.mine_diff) {
+	if (diff.mine_diff) {
 		return diff.mine_diff;
+	} else if (diff.size_diff) {
+		return diff.size_diff;
 	} else {
 		return calc_time(g1) - calc_time(g2);
 	}
@@ -455,7 +455,7 @@ function show_winners(level)
 		return;
 	}
 	console.attributes = WHITE;
-	console.print(format("    %-25s%-15s Size-Mine   Time       WxHxMines   Date\r\n", "User", ""));
+	console.print(format("    %-15s%-15s Size-Mine   Time       WxHxMines   Date\r\n", "User", ""));
 
 	var count = 0;
 	var displayed = 0;
@@ -466,7 +466,7 @@ function show_winners(level)
 	for(var i = 0; i < list.length && displayed < options.winners && !console.aborted; i++) {
 		game = list[i];
 		difficulty = calc_difficulty(game);
-		// TODO: reimplement the code below
+		// TODO: reimplement the code below maybe. idk what it does
 		/*
 		if(Math.ceil(difficulty) != Math.ceil(last_level)) {
 			last_level = difficulty;
@@ -481,7 +481,7 @@ function show_winners(level)
 			console.attributes = LIGHTCYAN;
 		else
 			console.attributes = BG_CYAN;
-		console.print(format("%3u %-25.25s%-15.15s %1.2f-%1.2f  %s  %3ux%2ux%-3u   %s\x01>\r\n"
+		console.print(format("%3u %-15.25s%-15.15s %1.2f-%1.2f  %s  %3ux%2ux%-3u   %s\x01>\r\n"
 			,count + 1
 			,game.name
 			,game.net_addr ? ('@'+game.net_addr) : ''
@@ -526,7 +526,7 @@ function show_log()
 		return;
 	}
 	console.attributes = WHITE;
-	console.print(format("Date      %-25s Size-Mine  Time      WxHxMines Rev  Result\r\n", "User", ""));
+	console.print(format("Date      %-15s Size-Mine  Time      WxHxMines Rev  Result\r\n", "User", ""));
 	
 	list.sort(compare_game);
 	
@@ -540,7 +540,7 @@ function show_log()
 
 		var game_dificulty = calc_difficulty(game)
 
-		console.print(format("%s  %-25s %1.2f-%1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
+		console.print(format("%s  %-15s %1.2f-%1.2f %s %3ux%2ux%-3u %3s  %s\x01>\x01n\r\n"
 			,system.datestr(game.end)
 			,game.name
 			,game_dificulty.size_level
@@ -783,22 +783,24 @@ function draw_board(full)
 		console.print(' ');
 		console.creturn();
 		show_title();
-		draw_border();
 	} else
 		console.down(top + 1);
 	if(gamewon) {
 		console.attributes = YELLOW|BLINK;
 		var blurb = "Winner! Cleared in";
-		if(win_rank)
+		if(win_rank) {
 			blurb = "Rank " + win_rank + " Winner in";
-		else if(new_best)
+		} else if(new_best) {
 			blurb = "Personal Best Time";
-		console_center(blurb + " " + secondstr(calc_time(game), true).trim());
-		console_center("");
+		}
+		console.clearline();
+		console.center("\x01n" + blurb + " " + secondstr(calc_time(game), true).trim());
+		console.down();
 	} else if(gameover && !view_details) {
 		console.attributes = CYAN|HIGH|BLINK;
-		console_center((calc_time(game) < options.timelimit * 60
-			? "" : "Time-out: ") + "Game Over");
+		console.clearline();
+		console.center("\x01nGame Over");
+		console.down();
 	} else {
 		var elapsed = 0;
 		if(game.start) {
@@ -807,24 +809,21 @@ function draw_board(full)
 			else
 				elapsed = (Date.now() / 1000) - game.start;
 		}
-		var timeleft = Math.max(0, (options.timelimit * 60) - elapsed);
 		console.attributes = LIGHTCYAN;
-		console_center(format("%2d Mines  %s%s ",
+		console.clearline();
+		console.center(format("\x01n%2d Mines  %s ",
 			game.mines - totalflags(),
-			game.start && !gameover && (timeleft / 60) <= options.timewarn ? "\x01r\x01h\x01i" : "",
 			secondstr(elapsed)
-			));
-		
-		draw_border();
-		console_center(format("Lvl %1.2f-%1.2f",
+		));
+		console.clearline();
+		console.center(format("\x01nLvl %1.2f-%1.2f",
 			calc_difficulty(game).size_level,
 			calc_difficulty(game).mine_level
-		))
+		));
 	}
-	var cmds = "";
+	var cmds = "\x01n";
 	if(full || cmds !== cmds_shown) {
 		console.clear_hotspots();
-		draw_border();
 		
 		cmds += "[\x01h?\x01n]Help";
 		if (!gameover && !game.start)
@@ -838,12 +837,30 @@ function draw_board(full)
 		
 		cmds_shown = cmds;
 		
-		
-		console_center(cmds);
-		
+		console.clearline();
+		console.center(cmds);
 	} else if(!console.term_supports(USER_ANSI)) {
 		console.creturn();
 		console.down(2);
+	}
+
+	// printing top of board border
+	if(full) {
+		height++;
+		console.clearline();  // sort of hard fix to clear characters in the empty line between top menu and bottom menu (mostly smiley face from winning)
+		console.down();
+		console.right(margin - 1);
+		console.attributes = CYAN;
+		console.print('\xDC');
+		for(var x = 0; x < (game.width * cell_width) + !(cell_width&1) - 1; x++)
+		{
+			console.print('\xDC');
+		}
+		console.print('\xDC');
+		console.attributes = LIGHTGRAY;
+		console.down();
+	} else {
+		console.down();
 	}
 	var redraw_selection = false;
 	for(var y = 0; y < game.height; y++) {
@@ -868,6 +885,7 @@ function draw_board(full)
 		console.line_counter = 0;
 	}
 	var height = game.height;
+	// drawing bottom border
 	if(full) {
 		if(game.height + header_height < console.screen_rows) {
 			height++;
@@ -1035,7 +1053,6 @@ function get_difficulty(all)
 
 	console.creturn();
 	console.cleartoeol();
-	draw_border();
 	console.attributes = WHITE;
 	console.clear_hotspots();
 	mouse_enable(false);
@@ -1047,9 +1064,11 @@ function get_difficulty(all)
 		mine_lvls += "\x01~" + i;
 
 
+	// TODO: the 'all' case and the '!all' case are mostly the same, might be able to simplify the following code
 	// when asking for leaderboards
 	if(all) {
 		// ask user for size level
+		console.clearline();
 		console.right((console.screen_columns - 20) / 2);
 		console.print(format("Size Level (%s) [\x01~All]: ", size_lvls));
 		var key = console.getkeys("QA", max_size_level);
@@ -1064,8 +1083,10 @@ function get_difficulty(all)
 		}
 
 		// ask user for mine level
+		console.up();  // kind of a hack. for some reason there was a gap between the two prompts
+		console.clearline();
 		console.right((console.screen_columns - 20) / 2);
-		console.print(format("Mine Level (%s) [\x01~All]: ", mine_lvls));
+		console.print(format("\x01hMine Level (%s) [\x01~All]: ", mine_lvls));
 		key = console.getkeys("QA", max_mine_level);
 		if(key == 'A') {
 			result.mine_level = 0;
@@ -1080,6 +1101,7 @@ function get_difficulty(all)
 		return result;
 	}
 
+	console.clearline();
 	console.right((console.screen_columns - 24) / 2);
 	console.print(format("Size Level (%s): ", size_lvls));
 	// result.size_level = console.getnum(max_size_level);
@@ -1090,8 +1112,10 @@ function get_difficulty(all)
 	}
 	result.size_level = key;
 	
+	console.up();  // kind of a hack. for some reason there was a gap between the two prompts
+	console.clearline();
 	console.right((console.screen_columns - 24) / 2);
-	console.print(format("Mine Level (%s): ", mine_lvls));
+	console.print(format("\x01hMine Level (%s): ", mine_lvls));
 	// result.mine_level = console.getnum(max_mine_level);
 	key = console.getkeys("Q", max_mine_level);
 	if(key == 'Q') {  // let user quit out of level selector
@@ -1231,11 +1255,6 @@ function play()
 
 	// main loop
 	while(bbs.online) {
-		if(!gameover && game.start
-			&& Date.now() - (game.start * 1000) >= options.timelimit * 60 * 1000) {
-			lostgame("timeout");
-			draw_board(true);
-		}
 		var mk = mouse_getkey(K_NONE, 1000, true);
 		var key = mk.key;
 		if (mk.mouse !== null) {
@@ -1396,18 +1415,21 @@ function play()
 				full_redraw = false;
 				console.home();
 				console.down(top + 1);
-				if(game.start && !gameover) {
+				if(game.start && !gameover) {  // if game started
 					console.cleartoeol();
-					draw_border();
 					console.attributes = LIGHTCYAN;
 					console.right((console.screen_columns - 15) / 2);
 					mouse_enable(false);
 					console.clear_hotspots();
-					console.print("New Game (\x01~Y/\x01~N) ?");
+					console.center("Retry (\x01~Y/\x01~N) ?");
 					var key = console.getkey(K_UPPER);
 					if(key != 'Y')
 						break;
+				} else if(!gameover) {  // if new game not started (all cells covered)
+					break;
 				}
+
+				// if gameover
 				full_redraw = true;
 				init_game(difficulty);
 				break;
@@ -1419,12 +1441,11 @@ function play()
 				console.down(top + 1);
 				if(game.start && !gameover) {
 					console.cleartoeol();
-					draw_border();
 					console.attributes = LIGHTCYAN;
 					console.right((console.screen_columns - 15) / 2);
 					mouse_enable(false);
 					console.clear_hotspots();
-					console.print("New Game (\x01~Y/\x01~N) ?");
+					console.center("New Game (\x01~Y/\x01~N) ?");
 					var key = console.getkey(K_UPPER);
 					if(key != 'Y')
 						break;
@@ -1517,12 +1538,11 @@ function play()
 					console.home();
 					console.down(top + 1);
 					console.cleartoeol();
-					draw_border();
 					console.attributes = LIGHTCYAN;
 					console.right((console.screen_columns - 16) / 2);
 					mouse_enable(false);
 					console.clear_hotspots();
-					console.print("Quit Game (\x01~Y/\x01~N) ?");
+					console.center("Quit Game (\x01~Y/\x01~N) ?");
 					var key = console.getkey(K_UPPER);
 					
 					if(key != 'Y')
@@ -1615,8 +1635,9 @@ try {
 	var msg = file_getname(e.fileName) + 
 		" line " + e.lineNumber + 
 		": " + e.message;
-	if(js.global.console)
+	if(js.global.console) {
 		console.crlf();
+	}
 	alert(msg);
 	if(options.sub && user.alias != author) {
 		var msgbase = new MsgBase(options.sub);
@@ -1626,8 +1647,9 @@ try {
 			subject: title
 		};
 		msg += tear_line;
-		if(!msgbase.save_msg(hdr, msg))
+		if(!msgbase.save_msg(hdr, msg)) {
 			alert("Error saving exception-message to: " + options.sub);
+		}
 		msgbase.close();
 	}
 }
